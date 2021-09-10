@@ -23,6 +23,30 @@
 	
 	<context:component-scan base-package="com.gym.geonganghae" />
 	
+	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<beans:property name="username" value="hr" />
+		<beans:property name="password" value="hr" />
+	</beans:bean>
 	
+	<beans:bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+	
+	<!-- 예외 처리 설정-->
+	<beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+				<beans:prop key="java.lang.ArithmeticException">
+					../common/arithmeticError
+				</beans:prop>
+				<beans:prop key="java.lang.NullPointerException">
+					../common/nullPointerError
+				</beans:prop>
+			</beans:props>
+		</beans:property>
+		<beans:property name="defaultErrorView" value="../common/error" />
+	</beans:bean>
 	
 </beans:beans>
