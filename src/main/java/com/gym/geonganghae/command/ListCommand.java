@@ -7,17 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.gym.geonganghae.dao.CenterDAO;
+import com.gym.geonganghae.dao.CenterDao;
 import com.gym.geonganghae.dao.MemberDao;
-import com.gym.geonganghae.dto.CenterDTO;
+import com.gym.geonganghae.dto.CenterDto;
 
 public class ListCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
 		
-		CenterDAO centerDao = new CenterDAO();
-		ArrayList<CenterDTO> dtos = centerDao.list();
+		CenterDao centerDao = new CenterDao();
+		ArrayList<CenterDto> dtos = centerDao.list();
 		model.addAttribute("list", dtos);
 	}
 

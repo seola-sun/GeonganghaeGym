@@ -17,6 +17,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginView() {
+		System.out.println("login_view()");
 		return "login";
 	}
 
@@ -34,6 +35,7 @@ public class LoginController {
 
 		if (member != null) {
 			session.setAttribute("userName", member.getName());
+			session.setAttribute("userId", member.getId());
 			return "redirect:index";
 		} else {
 			return "login";

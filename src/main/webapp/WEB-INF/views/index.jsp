@@ -23,14 +23,16 @@
 		</div>
 
 		<div>
-			<li><a href="#">HOME</a>
-			<li><a href="#">센터 찾기</a>
+			<li><a href="#">HOME</a></li>
+			<li><a href="center_list">센터 찾기</a>
 			<li><a href="#">입점 문의</a>
-			<li><a href="#">마이페이지</a>
-			<ul>
-				<li><a href="#">내 정보</a>
-				<li><a href="#">관심 목록</a>
-			</ul>
+				<c:if test="${not empty sessionScope.userName}">
+					<li><a href="#">마이페이지</a>
+						<ul>
+							<li><a href="#">내 정보</a>
+							<li><a href="#">관심 목록</a>
+						</ul>
+				</c:if>
 			<li><a href="#">고객 센터</a>
 				<ul>
 					<li><a href="#">공지 사항</a>

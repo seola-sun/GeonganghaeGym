@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>센터 상세</title>
+<script>
+	// 브라우저 뒤로가기 클릭 시, 센터 목록 페이지로 이동
+	// 관심 등록 or 해제, 추천 or 추천 해제 버튼 클릭 시, 상세페이지가 그 횟수만큼 리다이렉트 되어,
+	// 뒤로가기 버튼 클릭 시, 센터 목록 페이지로 이동되지 않았기 
+	window.onpageshow = function(event) {
+		if (event.persisted
+				|| (window.performance && window.performance.navigation.type == 2)) {
+			window.location = "center_list";
+		}
+	}
+</script>
 </head>
 <body>
-	<input type="hidden" name="centerCode" value="${center_view.centerCode}" >
+	<input type="hidden" name="centerCode"
+		value="${center_view.centerCode}">
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 		<tr>
 			<td>업체명</td>
@@ -58,7 +71,25 @@
 			<td>${center_view.recommendCnt}</td>
 		</tr>
 		<tr>
-			<td colspan="2"><a href="center_list">목록보기</a></td>
+			<td colspan="2"><a href="center_list">목록보기</a> <c:if
+					test="${not empty sessionScope.userName}">
+					<c:choose>
+						<c:when test="${chkRecommend}">
+							<a href="delRecommend?centerCode=${center_view.centerCode}">추천안할래요</a>
+						</c:when>
+						<c:otherwise>
+							<a href="addRecommend?centerCode=${center_view.centerCode}">추천할래요</a>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${chkInterest}">
+							<a href="delInterest?centerCode=${center_view.centerCode}">관심등록해제</a>
+						</c:when>
+						<c:otherwise>
+							<a href="addInterest?centerCode=${center_view.centerCode}">관심등록</a>
+						</c:otherwise>
+					</c:choose>
+				</c:if></td>
 		</tr>
 	</table>
 </body>

@@ -1,22 +1,15 @@
 package com.gym.geonganghae.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.gym.geonganghae.command.BWriteCommand;
 import com.gym.geonganghae.command.CenterCommand;
 import com.gym.geonganghae.command.Command;
 import com.gym.geonganghae.command.ListCommand;
-import com.gym.geonganghae.dao.MemberDao;
-import com.gym.geonganghae.dto.MemberDto;
-import com.gym.geonganghae.util.Constant;
+import com.gym.geonganghae.dao.CenterDao;
 
 @Controller
 public class CenterController {
@@ -42,6 +35,46 @@ public class CenterController {
 		command.execute(model);
 
 		return "center_view";
+	}
+	
+	@RequestMapping("/addInterest")
+	public String addInterest(HttpServletRequest request, Model model, CenterDao dao) {
+
+		model.addAttribute("request", request);
+		command = new CenterCommand();
+		String centerCode = ((CenterCommand) command).addInterestCommand(model);
+
+		return "redirect:center_view?centerCode=" + centerCode;
+	}
+	
+	@RequestMapping("/delInterest")
+	public String delInterest(HttpServletRequest request, Model model, CenterDao dao) {
+
+		model.addAttribute("request", request);
+		command = new CenterCommand();
+		String centerCode = ((CenterCommand) command).delInterestCommand(model);
+
+		return "redirect:center_view?centerCode=" + centerCode;
+	}
+	
+	@RequestMapping("/addRecommend")
+	public String addRecommend(HttpServletRequest request, Model model, CenterDao dao) {
+
+		model.addAttribute("request", request);
+		command = new CenterCommand();
+		String centerCode = ((CenterCommand) command).addRecommendCommand(model);
+
+		return "redirect:center_view?centerCode=" + centerCode;
+	}
+	
+	@RequestMapping("/delRecommend")
+	public String delRecommend(HttpServletRequest request, Model model, CenterDao dao) {
+
+		model.addAttribute("request", request);
+		command = new CenterCommand();
+		String centerCode = ((CenterCommand) command).delRecommendCommand(model);
+
+		return "redirect:center_view?centerCode=" + centerCode;
 	}
 
 }

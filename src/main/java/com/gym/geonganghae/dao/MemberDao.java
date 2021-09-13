@@ -5,10 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 import com.gym.geonganghae.dto.MemberDto;
@@ -25,7 +25,6 @@ public class MemberDao {
 
 	public void write(final String id, final String password, final String name, final String tel_number,
 			final String email, final String zipcode, final String address) {
-		// TODO Auto-generated method stub
 
 		this.template.update(new PreparedStatementCreator() {
 
@@ -54,37 +53,39 @@ public class MemberDao {
 
 	public MemberDto getUser(MemberDto dto) {
 		String query = "select * from member where id=? and password=?";
-		Object[] args = {dto.getId(), dto.getPassword()};
+		Object[] args = { dto.getId(), dto.getPassword() };
 		return template.queryForObject(query, args, new BeanPropertyRowMapper<MemberDto>(MemberDto.class));
 	}
 
 //	@SuppressWarnings("deprecation")
-	public MemberDto contentView(String strID) {
-		// TODO Auto-generated method stub
+	public MemberDto memberView(String strID) {
 
-		String query = "select * from mvc_board where bId = " + strID;
+		String query = "select * from member where Id = '" + strID + "'";
 //		return template.queryForObject(query, ParameterizedBeanPropertyRowMapper.newInstance(BDto.class));
 		return template.queryForObject(query, new BeanPropertyRowMapper<MemberDto>(MemberDto.class));
 
 	}
 
-//	public void modify(final String bId, final String bName, final String bTitle, final String bContent) {
-//		// TODO Auto-generated method stub
-//
-//		String query = "update mvc_board set bName = ?, bTitle = ?, bContent = ? where bId = ?";
-//
-//		this.template.update(query, new PreparedStatementSetter() {
-//
-//			@Override
-//			public void setValues(PreparedStatement ps) throws SQLException {
-//				ps.setString(1, bName);
-//				ps.setString(2, bTitle);
-//				ps.setString(3, bContent);
-//				ps.setInt(4, Integer.parseInt(bId));
-//			}
-//		});
-//
-//	}
+	public void modify(final String password, final String name, final String tel_number, final String email,
+			final String zipcode, final String address, final String id) {
+
+		String query = "update member set password = ?, name = ?, tel_number = ?, email = ?, zipcode = ?, address = ? where id = ?";
+
+		this.template.update(query, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setString(1, password);
+				ps.setString(2, name);
+				ps.setString(3, tel_number);
+				ps.setString(4, email);
+				ps.setString(5, zipcode);
+				ps.setString(6, address);
+				ps.setString(7, id);
+			}
+		});
+
+	}
 
 //	public void delete(final String bId) {
 //		// TODO Auto-generated method stub

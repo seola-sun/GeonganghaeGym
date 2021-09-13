@@ -2,7 +2,7 @@ package com.gym.geonganghae.dto;
 
 import java.sql.Date;
 
-public class CenterDTO {
+public class CenterDto {
 
 	private String centerCode;
 	private String centerName;
@@ -26,7 +26,7 @@ public class CenterDTO {
 	private int recommendCnt;
 	private Date regDate;
 
-	public CenterDTO() {
+	public CenterDto() {
 		// TODO Auto-generated constructor stub
 	}
 
