@@ -7,23 +7,17 @@ public class MemberDto {
 	private String name;
 	private String tel_number;
 	private String email;
-	private String zipcode;
-	private String address;
-
 
 	public MemberDto() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public MemberDto(String id, String password, String name, String tel_number, String email, String zipcode,
-			String address) {
+
+	public MemberDto(String id, String password, String name, String tel_number, String email) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.tel_number = tel_number;
 		this.email = email;
-		this.zipcode = zipcode;
-		this.address = address;
 	}
 
 	public String getId() {
@@ -64,22 +58,6 @@ public class MemberDto {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getZipcode() {
-		return zipcode;
-	}
-
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 }

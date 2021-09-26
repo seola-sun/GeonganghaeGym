@@ -8,24 +8,21 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 
 import com.gym.geonganghae.dao.MemberDao;
-import com.gym.geonganghae.dto.MemberDto;
 
-public class MyinfoCommand implements Command {
+public class DeleteCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
-
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
+
 		HttpSession session = request.getSession();
-		String loginId = (String) session.getAttribute("userId");
-		
+		String id = (String) session.getAttribute("userId");
+
 		MemberDao dao = new MemberDao();
-		MemberDto dto = dao.memberView(loginId);
-		
-		model.addAttribute("member", dto);
-		
+		dao.delete(id);
+
+		session.invalidate();
 	}
-	
+
 }

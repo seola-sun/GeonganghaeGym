@@ -7,10 +7,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gym.geonganghae.command.Command;
+import com.gym.geonganghae.command.DeleteCommand;
 import com.gym.geonganghae.command.MemberModCommand;
 import com.gym.geonganghae.command.MyinfoCommand;
+import com.gym.geonganghae.command.MyinfoModifyViewCommand;
 import com.gym.geonganghae.util.Constant;
 
 @Controller
@@ -42,10 +45,32 @@ public class MemberController {
 		System.out.println("myinfoModify_view()");
 		
 		model.addAttribute("request", request);
-		command = new MemberModCommand();
+		command = new MyinfoModifyViewCommand();
 		command.execute(model);
 		
 		return "myinfoModify_view";
+	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST )
+	public String modify(HttpServletRequest request, Model model){
+		System.out.println("modify()");
+		
+		model.addAttribute("request", request);
+		command = new MemberModCommand();
+		command.execute(model);
+		
+		return "redirect:myinfo_view";
+	}	
+	
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request, Model model) {
+		System.out.println("delete()");
+		
+		model.addAttribute("request", request);
+		command = new DeleteCommand();
+		command.execute(model);
+		
+		return "redirect:/";
 	}
 
 }

@@ -20,9 +20,8 @@ public class HomeController {
 		Constant.template = this.template;
 	}
 	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		System.out.println("index_view()");
 		
 		return "index";
 	}

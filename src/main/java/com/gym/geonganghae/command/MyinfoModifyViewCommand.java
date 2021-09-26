@@ -10,8 +10,9 @@ import org.springframework.ui.Model;
 import com.gym.geonganghae.dao.MemberDao;
 import com.gym.geonganghae.dto.MemberDto;
 
-public class MyinfoCommand implements Command {
+public class MyinfoModifyViewCommand implements Command {
 
+	
 	@Override
 	public void execute(Model model) {
 
@@ -19,13 +20,11 @@ public class MyinfoCommand implements Command {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
 		HttpSession session = request.getSession();
-		String loginId = (String) session.getAttribute("userId");
+		String id = (String) session.getAttribute("userId");
 		
 		MemberDao dao = new MemberDao();
-		MemberDto dto = dao.memberView(loginId);
+		MemberDto dto = dao.memberView(id);
 		
-		model.addAttribute("member", dto);
-		
+		model.addAttribute("infoModify_view", dto);
 	}
-	
 }

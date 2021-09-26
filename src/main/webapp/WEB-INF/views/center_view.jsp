@@ -20,11 +20,15 @@
 </head>
 <body>
 	<input type="hidden" name="centerCode"
-		value="${center_view.centerCode}">
+		value="${center_view.centerCode}" readonly>
+	<input type="hidden" id="latitude" value="${center_view.latitude}"
+		readonly>
+	<input type="hidden" id="longitude" value="${center_view.longitude}"
+		readonly>
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 		<tr>
 			<td>업체명</td>
-			<td>${center_view.centerName}</td>
+			<td id="centerName">${center_view.centerName}</td>
 		</tr>
 		<tr>
 			<td>상세 설명</td>
@@ -71,8 +75,8 @@
 			<td>${center_view.recommendCnt}</td>
 		</tr>
 		<tr>
-			<td colspan="2"><a href="center_list">목록보기</a> <c:if
-					test="${not empty sessionScope.userName}">
+			<td colspan="2"><a href="center_list">목록보기</a> 
+				<c:if test="${not empty sessionScope.userName}">
 					<c:choose>
 						<c:when test="${chkRecommend}">
 							<a href="delRecommend?centerCode=${center_view.centerCode}">추천안할래요</a>
@@ -89,8 +93,47 @@
 							<a href="addInterest?centerCode=${center_view.centerCode}">관심등록</a>
 						</c:otherwise>
 					</c:choose>
-				</c:if></td>
+				</c:if>
+			</td>
 		</tr>
 	</table>
+	<div id="map" style="width: 40%; height: 250px;"></div>
+	<script
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb1f6c28607b26aa93fbe7eb6a7f3562&libraries=services"></script>
+	<script>
+		var mapContainer = document.getElementById("map");
+		var latitude = document.getElementById("latitude").value;
+		var longitude = document.getElementById("longitude").value;
+		var centerName = document.getElementById("centerName").innerHTML;
+		var mapOption;
+		var map;
+
+		var coords = new daum.maps.LatLng(latitude, longitude);
+		
+		mapOption = {
+			center : coords,
+			level : 4 // 지도의 확대 레벨
+		};
+
+		// 지도 생성
+		map = new daum.maps.Map(mapContainer, mapOption);
+
+		// 결과값으로 받은 위치를 마커로 표시합니다.
+		var marker = new daum.maps.Marker({
+			map : map,
+			position : coords
+		});
+
+		// 인포윈도우로 장소에 대한 설명표시
+		var infowindow = new daum.maps.InfoWindow(
+				{
+					content : '<div style="width:150px; text-align:center; padding:5px 0;">'+ centerName +'</div>'
+				});
+
+		infowindow.open(map, marker);
+
+		// 지도 중심을 이동
+		map.setCenter(coords);
+	</script>
 </body>
 </html>
