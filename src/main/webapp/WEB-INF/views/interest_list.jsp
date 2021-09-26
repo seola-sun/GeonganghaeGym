@@ -40,7 +40,6 @@
 
 		</tr>
 		<c:forEach items="${list}" var="dto">
-
 			<tr>
 				<td>${dto.id}</td>
 				<td>${dto.centerCode}</td>
@@ -51,7 +50,6 @@
 				<td><a href="InterDelete?centerCode=${dto.centerCode}"> 삭제
 				</a></td>
 			</tr>
-
 		</c:forEach>
 	</table>
 </body>

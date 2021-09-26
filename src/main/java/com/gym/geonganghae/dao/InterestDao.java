@@ -32,7 +32,8 @@ public class InterestDao {
 							+ "c.interest_cnt, "
 							+ "i.regdate "
 						+ "FROM INTEREST i, CENTER c "
-						+ "WHERE i.center_Code = c.center_Code ";
+						+ "WHERE i.center_Code = c.center_Code "
+						+ "AND i.id = '" + loginId + "'";
 		
 		return (ArrayList<InterestDto>) template.query(query,
 				new BeanPropertyRowMapper<InterestDto>(InterestDto.class));
