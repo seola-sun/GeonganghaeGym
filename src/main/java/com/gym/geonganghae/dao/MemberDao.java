@@ -31,7 +31,7 @@ public class MemberDao {
 
 	public void write(final String id, final String password, final String name, final String tel_number,
 			final String email) {
-		String query = "INSERT INTO MEMBER VALUES (?, ?, ?, ?, ?, SYSDATE, SYSDATE)";
+		String query = "INSERT INTO MEMBER VALUES (?, ?, ?, ?, ?, SYSDATE, SYSDATE, 'N')";
 		Object[] args = { id, password, name, tel_number, email };
 		this.template.update(query, args);
 	}
