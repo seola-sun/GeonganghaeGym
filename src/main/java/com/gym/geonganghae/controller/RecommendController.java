@@ -1,6 +1,7 @@
 package com.gym.geonganghae.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,23 +16,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gym.geonganghae.command.Command;
+import com.gym.geonganghae.dao.RecommendDao;
 import com.gym.geonganghae.dto.CenterDto;
-import com.gym.geonganghae.dto.InterestDto;
 import com.gym.geonganghae.service.Action;
-import com.gym.geonganghae.service.ActionForward;
 import com.gym.geonganghae.service.RecCount;
+import com.gym.geonganghae.service.RecUpdate;
 import com.gym.geonganghae.util.Constant;
 
 @Controller
 public class RecommendController {
 
-	Command command = null;
-
 	private JdbcTemplate template;
 
 	Action action = null;
-
-	ActionForward forward = null;
 
 	@Autowired
 	public void setTemplate(JdbcTemplate template) {
@@ -40,49 +37,48 @@ public class RecommendController {
 	}
 
 	// by설아, 추천수 업데이트
-//	@ResponseBody
-//	@RequestMapping("/RecUpdate")
-//	public void recUpdate(HttpServletRequest request, HttpServletResponse response, Model model)
-//			throws ServletException, IOException {
-//		try {
-//			action = new RecUpdate();
-//			action.execute(request, response, model);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+	@ResponseBody
+	@RequestMapping(value = "/RecUpdate", method = RequestMethod.POST)
+	public void recUpdate(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			action = new RecUpdate();
+			action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	// by설아, 추천수 검색
 	@ResponseBody
 	@RequestMapping(value = "/RecCount", method = RequestMethod.POST)
-	public CenterDto recCount(HttpServletRequest request, HttpServletResponse response, Model model)
+	public void recCount(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		CenterDto dto = null;
 		try {
 			action = new RecCount();
-			dto = action.execute(request, response, model);
+			action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dto;
 	}
 
-//	/**
-//	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-//	 *      response)
-//	 */
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("get");
-//		doProcess(request, response);
-//	}
-//
-//	/**
-//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-//	 *      response)
-//	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
-//		System.out.println("post");
-//		doProcess(request, response);
-//	}
+	// by설아, 추천수 검색
+	@RequestMapping(value = "/RecCheck", method = RequestMethod.POST)
+	public void recCheck(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			String centerCode = request.getParameter("center");
+			String loginId = request.getParameter("member");
+
+			RecommendDao recDao = new RecommendDao();
+
+			PrintWriter out = response.getWriter();
+			out.print(recDao.recommendChk(centerCode, loginId) + "");
+			out.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

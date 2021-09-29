@@ -9,5 +9,5 @@ import com.gym.geonganghae.dto.CenterDto;
 import com.gym.geonganghae.dto.InterestDto;
 
 public interface Action {
-	public CenterDto execute(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception;
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

@@ -27,9 +27,7 @@ public class CountController {
 	public void setTemplate(JdbcTemplate template) {
 		this.template = template;
 		Constant.template = this.template;
-	}
-	
-	
+	}	
 	
 	@RequestMapping(value="chart", method=RequestMethod.GET)
 	public  String Chart(ChartDto chartDto,ChartDao ChartDao,Model model){

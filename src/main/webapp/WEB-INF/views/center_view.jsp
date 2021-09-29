@@ -6,43 +6,71 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- by설아, jquery 사용하기 위한 링크 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- by설아, Font Awesome 아이콘 사용하기 위한 링크 -->
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script>
-$(function(){
-	// 추천버튼 클릭시(추천 추가 또는 추천 제거)
-	$("#rec_update").click(function(){
-		$.ajax({
-			url: "/RecUpdate",
-            type: "POST",
-            data: {
-                center: '${center_view.centerCode}',
-                member: '${userId}'
-            },
-            success: function () {
-		        recCount();
-            },
+	$(function() {
+		// 추천버튼 클릭시(추천 추가 또는 추천 제거)
+		$("#rec_update").click(function() {
+			$.ajax({
+				url : "RecUpdate",
+				type : "POST",
+				data : {
+					center : '${center_view.centerCode}',
+					member : '${userId}'
+				},
+				success : function() {
+					recCount();
+					recCheck();
+				},
+			})
 		})
+
+		// 센터 추천수 표시
+		function recCount() {
+			$.ajax({
+				url : "RecCount",
+				type : "POST",
+				data : {
+					center : "${center_view.centerCode}"
+				},
+				success : function(count) {
+					$(".rec_cnt").html(count);
+				}
+			});
+
+		}
+		;
+
+		// 로그인 유저의 해당 센터 추천 체크
+		function recCheck() {
+			$.ajax({
+				url : "RecCheck",
+				type : "POST",
+				data : {
+					center : "${center_view.centerCode}",
+					member : "${userId}"
+				},
+				success : function(count) {
+					if (count == 1) {
+						// 꽉 찬 하트 출력
+						$("#recommend")
+								.html("<i class=\"fas fa-heart fa-2x\">");
+
+					} else {
+						// 빈 하트 출력
+						$("#recommend")
+								.html("<i class=\"far fa-heart fa-2x\">");
+					}
+				}
+			});
+		}
+		;
+		recCount(); // 처음 시작했을 때 실행되도록 해당 함수 호출
+		recCheck();
 	})
-	
-	// 게시글 추천수
-    function recCount() {
-		$.ajax({
-			url: "RecCount",
-            type: "POST",
-            data: {
-                center: "${center_view.centerCode}",
-                member: "${userId}"
-            },
-            success: function (count) {
-            	$(".rec_cnt").html(count);
-            }
-		});
-		
-    };
-    recCount(); // 처음 시작했을 때 실행되도록 해당 함수 호출
-})
 </script>
 <title>센터 상세</title>
 </head>
@@ -96,54 +124,29 @@ $(function(){
 		</tr>
 		<tr>
 			<td>관심등록수</td>
-			<%-- <td>${center_view.interestCnt}</td> --%>
 			<td><span class="inter_cnt"></span></td>
 		</tr>
 		<tr>
 			<td>추천수</td>
-			<%-- <td>${center_view.recommendCnt}</td> --%>
 			<td><span class="rec_cnt"></span></td>
 		</tr>
 		<tr>
 			<td colspan="2"><a href="center_list">목록보기</a>
-				<!-- 로그인 상태일 때 관심등록, 추천기능 활성화 -->
+			<!-- 로그인 상태일 때 관심등록, 추천기능 활성화 -->
 				<c:if test="${userId!=null}">
-				<input type="text" value="${recommend}">
-					<c:choose>
-						<c:when test="${recommend == 0}">
-							<!-- 빈 하트 -->
-							<button id="rec_update" style="border:0; outline:0; background:none; cursor:pointer">
-								<span style="color: red"><i class="far fa-heart fa-2x"></i></span>
-							</button>
-						</c:when>
-						<c:otherwise>
-							<!-- 꽉찬 하트 -->
-							<button id="rec_update" style="border:0; outline:0; background:none; cursor:pointer">
-								<span style="color: red"><i class="fas fa-heart fa-2x"></i></span>
-							</button>
-						</c:otherwise>
-					</c:choose>
-					<span style="color: gold"><i class="far fa-star"></i></span>
-					<span style="color: gold"><i class="fas fa-star"></i></span>
-				</c:if>
-				<%-- <c:if test="${not empty sessionScope.userName}">
-					<c:choose>
-						<c:when test="${chkRecommend}">
-							<a href="delRecommend?centerCode=${center_view.centerCode}">추천안할래요</a>
-						</c:when>
-						<c:otherwise>
-							<a href="addRecommend?centerCode=${center_view.centerCode}">추천할래요</a>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${chkInterest}">
-							<a href="delInterest?centerCode=${center_view.centerCode}">관심등록해제</a>
-						</c:when>
-						<c:otherwise>
-							<a href="addInterest?centerCode=${center_view.centerCode}">관심등록</a>
-						</c:otherwise>
-					</c:choose>
-				</c:if> --%></td>
+					<!-- 추천(하트) 표시 -->
+					<button id="rec_update"
+						style="border: 0; outline: 0; background: none; cursor: pointer">
+						<span id="recommend" style="color: red"></span>
+					</button>
+					<!-- 관심등록(별) 표시 -->
+					<button id="inter_update"
+						style="border: 0; outline: 0; background: none; cursor: pointer">
+						<span id="interest" style="color: gold"></span> <span
+							style="color: gold"><i class="far fa-star"></i></span> <span
+							style="color: gold"><i class="fas fa-star"></i></span>
+					</button>
+				</c:if></td>
 		</tr>
 	</table>
 	<div id="map" style="width: 40%; height: 250px;"></div>
@@ -158,10 +161,11 @@ $(function(){
 		var map;
 
 		var coords = new daum.maps.LatLng(latitude, longitude);
-		
+
 		mapOption = {
 			center : coords,
-			level : 4 // 지도의 확대 레벨
+			level : 4
+		// 지도의 확대 레벨
 		};
 
 		// 지도 생성
@@ -176,7 +180,8 @@ $(function(){
 		// 인포윈도우로 장소에 대한 설명표시
 		var infowindow = new daum.maps.InfoWindow(
 				{
-					content : '<div style="width:150px; text-align:center; padding:5px 0;">'+ centerName +'</div>'
+					content : '<div style="width:150px; text-align:center; padding:5px 0;">'
+							+ centerName + '</div>'
 				});
 
 		infowindow.open(map, marker);
