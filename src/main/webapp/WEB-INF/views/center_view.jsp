@@ -6,13 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- by설아, jquery 사용하기 위한 링크 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- by설아, Font Awesome 아이콘 사용하기 위한 링크 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- by설아, Font Awesome 아이콘 사용하기 위한 링크 (추천 하트, 관심 등록 별표) -->
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<!-- by설아, 센터 추천 기능 -->
 <script>
 	$(function() {
-		// 추천버튼 클릭시(추천 추가 또는 추천 제거)
+		// 추천 버튼 클릭시(추천 추가 또는 추천 제거)
 		$("#rec_update").click(function() {
 			$.ajax({
 				url : "RecUpdate",
@@ -42,7 +42,6 @@
 			});
 
 		}
-		;
 
 		// 로그인 유저의 해당 센터 추천 체크
 		function recCheck() {
@@ -57,19 +56,81 @@
 					if (count == 1) {
 						// 꽉 찬 하트 출력
 						$("#recommend")
-								.html("<i class=\"fas fa-heart fa-2x\">");
+								.html("<i class=\"fas fa-heart fa-lg\"></i>그만추천하기");
 
 					} else {
 						// 빈 하트 출력
 						$("#recommend")
-								.html("<i class=\"far fa-heart fa-2x\">");
+								.html("<i class=\"far fa-heart fa-lg\"></i>추천하기");
 					}
 				}
 			});
 		}
-		;
-		recCount(); // 처음 시작했을 때 실행되도록 해당 함수 호출
+		// 처음 시작했을 때 실행되도록 해당 함수 호출
+		recCount();
 		recCheck();
+	})
+</script>
+<!-- by설아, 센터 관심등록 기능 -->
+<script>
+	$(function() {
+		// 관심등록 버튼 클릭시(관심 등록 또는 관심 취소)
+		$("#inter_update").click(function() {
+			$.ajax({
+				url : "InterUpdate",
+				type : "POST",
+				data : {
+					center : '${center_view.centerCode}',
+					member : '${userId}'
+				},
+				success : function() {
+					interCount();
+					interCheck();
+				},
+			})
+		})
+
+		// 센터 관심등록수 표시
+		function interCount() {
+			$.ajax({
+				url : "InterCount",
+				type : "POST",
+				data : {
+					center : "${center_view.centerCode}"
+				},
+				success : function(count) {
+					$(".inter_cnt").html(count);
+				}
+			});
+
+		}
+
+		// 로그인 유저의 해당 센터 관심 등록 체크
+		function interCheck() {
+			$.ajax({
+				url : "InterCheck",
+				type : "POST",
+				data : {
+					center : "${center_view.centerCode}",
+					member : "${userId}"
+				},
+				success : function(count) {
+					if (count == 1) {
+						// 꽉 찬 별 출력
+						$("#interest")
+								.html("<i class=\"fas fa-star fa-lg\"></i>관심목록삭제");
+
+					} else {
+						// 빈 별 출력
+						$("#interest")
+								.html("<i class=\"far fa-star fa-lg\"></i>관심목록추가");
+					}
+				}
+			});
+		}
+		// 처음 시작했을 때 실행되도록 해당 함수 호출
+		interCount(); 
+		interCheck();
 	})
 </script>
 <title>센터 상세</title>
@@ -142,9 +203,7 @@
 					<!-- 관심등록(별) 표시 -->
 					<button id="inter_update"
 						style="border: 0; outline: 0; background: none; cursor: pointer">
-						<span id="interest" style="color: gold"></span> <span
-							style="color: gold"><i class="far fa-star"></i></span> <span
-							style="color: gold"><i class="fas fa-star"></i></span>
+						<span id="interest" style="color: gold"></span>
 					</button>
 				</c:if></td>
 		</tr>

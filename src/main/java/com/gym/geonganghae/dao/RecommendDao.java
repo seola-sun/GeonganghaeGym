@@ -15,7 +15,6 @@ public class RecommendDao {
 	// 스프링 프레임워크에서 제공하는 JdbcTemplate 객체를 변수 선언
 	JdbcTemplate template;
 
-	// private SqlSession session;
 	private static RecommendDao instance = new RecommendDao();
 
 	// 기본 생성자
@@ -47,12 +46,12 @@ public class RecommendDao {
 
 	public void recUpdate(String centerCode, String userId) {
 		try {
-			// 유저가 해당 센터를 추천하고 있지 않은 경우만 관심 등록 추가
+			// 유저가 해당 센터를 추천하고 있지 않은 경우만 추천 테이블에 추가
 			String recommendUpdate = "INSERT INTO RECOMMEND (SEQ, ID, CENTER_CODE) "
 									+ "VALUES ((SELECT NVL(MAX(SEQ), 0) + 1 FROM RECOMMEND), ?, ?)";
 			int updateCnt = this.template.update(recommendUpdate, userId, centerCode);
 
-			// 추천 테이블에 1건 추가된 경우에만 CENTER 테이블 관심등록수 업데이트
+			// 추천 테이블에 1건 추가된 경우에만 CENTER 테이블 추천수 업데이트
 			if (updateCnt == 1) {
 				String centerUpdate = "UPDATE CENTER SET RECOMMEND_CNT = RECOMMEND_CNT + 1 WHERE CENTER_CODE = ?";
 				this.template.update(centerUpdate, centerCode);
@@ -70,7 +69,7 @@ public class RecommendDao {
 			String recommendUpdate = "DELETE FROM RECOMMEND WHERE ID = ? AND CENTER_CODE = ?";
 			int count = this.template.update(recommendUpdate, userId, centerCode);
 
-			// 관심 등록에 1건 삭제된 경우에만 CENTER 테이블 관심등록수 업데이트
+			// 추천테이블 1건 삭제된 경우에만 CENTER 테이블 추천수 업데이트
 			if (count == 1) {
 				String centerUpdate = "UPDATE CENTER SET RECOMMEND_CNT = RECOMMEND_CNT - 1 WHERE CENTER_CODE = ?";
 				this.template.update(centerUpdate, centerCode);

@@ -62,7 +62,7 @@ public class RecommendController {
 		}
 	}
 
-	// by설아, 추천수 검색
+	// by설아, 추천 체크
 	@RequestMapping(value = "/RecCheck", method = RequestMethod.POST)
 	public void recCheck(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
