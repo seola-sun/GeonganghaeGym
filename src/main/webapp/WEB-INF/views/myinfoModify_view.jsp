@@ -32,7 +32,7 @@
 				<td> <input type="text" name="email" value="${infoModify_view.email}" /> </td>
 			</tr>
 			<tr >
-				<td colspan="2"> <input type="submit" value="수정">&nbsp;&nbsp; <a href="deleteid=${infoModify_view.id}">회원탈퇴</a> &nbsp;&nbsp;</td>
+				<td colspan="2"> <input type="submit" value="수정">&nbsp;&nbsp; <a href="delete?id=${infoModify_view.id}">회원탈퇴</a> &nbsp;&nbsp;</td>
 			</tr>
 		</form>
 	</table>

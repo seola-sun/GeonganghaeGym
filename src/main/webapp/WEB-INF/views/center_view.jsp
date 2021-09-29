@@ -5,18 +5,46 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>센터 상세</title>
+<!-- by설아, jquery 사용하기 위한 링크 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- by설아, Font Awesome 아이콘 사용하기 위한 링크 -->
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script>
-	// 브라우저 뒤로가기 클릭 시, 센터 목록 페이지로 이동
-	// 관심 등록 or 해제, 추천 or 추천 해제 버튼 클릭 시, 상세페이지가 그 횟수만큼 리다이렉트 되어,
-	// 뒤로가기 버튼 클릭 시, 센터 목록 페이지로 이동되지 않았기 
-	window.onpageshow = function(event) {
-		if (event.persisted
-				|| (window.performance && window.performance.navigation.type == 2)) {
-			window.location = "center_list";
-		}
-	}
+$(function(){
+	// 추천버튼 클릭시(추천 추가 또는 추천 제거)
+	$("#rec_update").click(function(){
+		$.ajax({
+			url: "/RecUpdate",
+            type: "POST",
+            data: {
+                center: '${center_view.centerCode}',
+                member: '${userId}'
+            },
+            success: function () {
+		        recCount();
+            },
+		})
+	})
+	
+	// 게시글 추천수
+    function recCount() {
+		$.ajax({
+			url: "RecCount",
+            type: "POST",
+            data: {
+                center: "${center_view.centerCode}",
+                member: "${userId}"
+            },
+            success: function (count) {
+            	$(".rec_cnt").html(count);
+            }
+		});
+		
+    };
+    recCount(); // 처음 시작했을 때 실행되도록 해당 함수 호출
+})
 </script>
+<title>센터 상세</title>
 </head>
 <body>
 	<input type="hidden" name="centerCode"
@@ -68,15 +96,37 @@
 		</tr>
 		<tr>
 			<td>관심등록수</td>
-			<td>${center_view.interestCnt}</td>
+			<%-- <td>${center_view.interestCnt}</td> --%>
+			<td><span class="inter_cnt"></span></td>
 		</tr>
 		<tr>
 			<td>추천수</td>
-			<td>${center_view.recommendCnt}</td>
+			<%-- <td>${center_view.recommendCnt}</td> --%>
+			<td><span class="rec_cnt"></span></td>
 		</tr>
 		<tr>
-			<td colspan="2"><a href="center_list">목록보기</a> 
-				<c:if test="${not empty sessionScope.userName}">
+			<td colspan="2"><a href="center_list">목록보기</a>
+				<!-- 로그인 상태일 때 관심등록, 추천기능 활성화 -->
+				<c:if test="${userId!=null}">
+				<input type="text" value="${recommend}">
+					<c:choose>
+						<c:when test="${recommend == 0}">
+							<!-- 빈 하트 -->
+							<button id="rec_update" style="border:0; outline:0; background:none; cursor:pointer">
+								<span style="color: red"><i class="far fa-heart fa-2x"></i></span>
+							</button>
+						</c:when>
+						<c:otherwise>
+							<!-- 꽉찬 하트 -->
+							<button id="rec_update" style="border:0; outline:0; background:none; cursor:pointer">
+								<span style="color: red"><i class="fas fa-heart fa-2x"></i></span>
+							</button>
+						</c:otherwise>
+					</c:choose>
+					<span style="color: gold"><i class="far fa-star"></i></span>
+					<span style="color: gold"><i class="fas fa-star"></i></span>
+				</c:if>
+				<%-- <c:if test="${not empty sessionScope.userName}">
 					<c:choose>
 						<c:when test="${chkRecommend}">
 							<a href="delRecommend?centerCode=${center_view.centerCode}">추천안할래요</a>
@@ -93,8 +143,7 @@
 							<a href="addInterest?centerCode=${center_view.centerCode}">관심등록</a>
 						</c:otherwise>
 					</c:choose>
-				</c:if>
-			</td>
+				</c:if> --%></td>
 		</tr>
 	</table>
 	<div id="map" style="width: 40%; height: 250px;"></div>

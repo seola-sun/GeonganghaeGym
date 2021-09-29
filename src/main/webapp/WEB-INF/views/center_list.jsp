@@ -6,15 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>센터 목록</title>
-<script>
-	// 브라우저 뒤로가기 클릭 시, 인덱스 페이지로 이동
-	window.onpageshow = function(event) {
-		if (event.persisted
-				|| (window.performance && window.performance.navigation.type == 2)) {
-			window.location = "index";
-		}
-	}
-</script>
 </head>
 <body>
 	<form action="center_list" method="post">

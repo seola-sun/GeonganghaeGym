@@ -19,7 +19,7 @@ public class InterestCommand implements Command {
 		String loginId = LoginCommand.loginChk(request);
 		
 		String centerCode = request.getParameter("centerCode");
-		System.out.println("command에서 centercode : "+centerCode);
+		
 		InterestDao dao = new InterestDao();
 		dao.delete(loginId, centerCode);
 

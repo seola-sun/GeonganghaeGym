@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class InterestDto {
 
+	private String seq;
 	private String id;
 	private String centerCode;
 	private Date regDate;
@@ -13,13 +14,22 @@ public class InterestDto {
 	public InterestDto() {
 	}
 
-	public InterestDto(String id, String centerCode, Date regDate, int interest_cnt, int usage_fee_min) {
+	public InterestDto(String seq, String id, String centerCode, Date regDate, int interest_cnt, int usage_fee_min) {
 
+		this.seq = seq;
 		this.id = id;
 		this.centerCode = centerCode;
 		this.regDate = regDate;
 		this.interest_cnt = interest_cnt;
 		this.usage_fee_min = usage_fee_min;
+	}
+
+	public String getSeq() {
+		return seq;
+	}
+
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
 
 	public int getUsage_fee_min() {
