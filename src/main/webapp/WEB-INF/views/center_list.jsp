@@ -134,6 +134,7 @@ ul li {
 			</c:choose>
 		</div>
 	</nav>
+	
 	<section class="page-section portfolio" id="portfolio">
 		<div class="container">
 			<!-- Portfolio Section Heading-->

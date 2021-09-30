@@ -39,8 +39,6 @@
 		var centerCountList = new Array();
 		var sportsCountList = new Array();
 		var interestCountList = new Array();
-	
-		
 
 		<c:forEach var = "member" items="${memberChart}" >
 		memberCountList.push("${member.value}");
@@ -66,10 +64,8 @@
 		interestCountList.push("${interest.value}");
 		</c:forEach>
 
-		
 		console.log(interestCountList);
 	 
-		
 		var barChart = new Chart(myChartOne,{
 			type:'bar',//pie,line,doughnut,polarArea
 			data:{
@@ -81,7 +77,6 @@
 				}]
 			}
 		});
-		
 		
 		var BarChart = new Chart(myChartTwo,{
 			type:'bar',//pie,line,doughnut,polarArea
@@ -95,10 +90,6 @@
 			}
 		});
 		
-		
-		
-		
-		
 		var LineChart = new Chart(myChartThree,{
 			type:'line',//pie,line,doughnut,polarArea
 			data:{
@@ -111,7 +102,6 @@
 			}
 		});
 		
-		
 		var PolarAreaChart = new Chart(myChartFour,{
 			type:'polarArea',//pie,line,doughnut,polarArea
 			data:{
@@ -123,8 +113,6 @@
 				}]
 			}
 		});
-		
-		
 	
 	</script>
 </body>
