@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<link href="http://fonts.googleapis.com/earlyaccess/nanumpenscript.css"
-	rel="stylesheet">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 글꼴을 링크에서 가져옴 -->
 <link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css"
 	rel="stylesheet">
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>건강해Gym</title>
+<title>입점문의</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Font Awesome icons (free version)-->
@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="./resources/css/body.css">
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="./resources/css/openstore.css" rel="stylesheet" />
+
+<!-- 상단 메뉴바 하위 목록들 CSS, css파일로 옮기면 적용이 안됨 -->
 <style>
 a {
 	text-decoration: none;
@@ -45,11 +47,11 @@ ul li {
 </head>
 <body id="page-top">
 	<!-- Navigation-->
-	<nav
-		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
+	<nav class="navbar navbar-expand-lg bg-secondary  fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="#page-top">입점문의</a>
+			<a class="navbar-brand" href="index">건강해Gym</a>
+
 			<button
 				class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-bs-toggle="collapse"
@@ -60,30 +62,70 @@ ul li {
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#main">HOME</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#main">센터찾기</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">입점문의</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">마이페이지</a>
-						<ul id="sub-menu">
-							<li><a href="#" aria-label="subemnu">내 정보</a></li>
-							<li><a href="#" aria-label="subemnu">관심목록</a></li>
-						</ul></li>
-
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">고객센터</a>
-						<ul id="sub-menu">
-							<li><a href="#" aria-label="subemnu">공지사항</a></li>
-							<li><a href="#" aria-label="subemnu">QnA</a></li>
-						</ul></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded" href="index"> HOME
+					</a></li>
+					<c:choose>
+						<c:when test="${admin == 'Y'&& userId != null }"></c:when>
+						<c:otherwise>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="center_list">
+									센터찾기 </a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="openstore">
+									입점문의 </a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:if test="${not empty sessionScope.userName}">
+						<c:if test="${admin == 'N' }">
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="myinfo_view">
+									마이페이지 </a>
+								<ul id="sub-menu">
+									<li><a href="myinfo_view" aria-label="subemnu">내 정보</a></li>
+									<li><a href="interest_list" aria-label="subemnu">관심목록</a></li>
+								</ul></li>
+						</c:if>
+						<c:if test="${admin == 'Y' }">
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="#">서비스통계</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="#">센터관리</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="#">회원관리</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="#"> 고객센터 </a>
+								<ul id="sub-menu">
+									<li><a href="#" aria-label="subemnu">공지관리</a></li>
+									<li><a href="#" aria-label="subemnu">문의관리</a></li>
+								</ul></li>
+						</c:if>
+					</c:if>
+					<c:choose>
+						<c:when test="${admin == 'Y'&& userId != null }"></c:when>
+						<c:otherwise>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="#"> 고객센터 </a>
+								<ul id="sub-menu">
+									<li><a href="#" aria-label="subemnu">공지사항</a></li>
+									<li><a href="#" aria-label="subemnu">QnA</a></li>
+								</ul></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
-
-
+			<c:choose>
+				<c:when test="${not empty sessionScope.userName}">
+					<span style="font-family: nanumgothic; color: white;">
+						${userName}님 </span>
+					<a href="logout">[Logout]</a>
+				</c:when>
+				<c:otherwise>
+					<div>
+						<a href="login">로그인</a> <a href="write_view">회원가입</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
-
 	</nav>
 	<!-- Masthead-->
 	<header class="masthead bg-primary text-white text-center" id="main">
