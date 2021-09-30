@@ -125,7 +125,7 @@ ul li {
 					여백
 				</div>
 			
-				<div class="col-md-2 number-box" style="background-color:#5e35b1">
+				<div class="col-md-2 number-box" style="background-color:#9a67ea">
 				<span>가입회원</span><br><span class="total-num" id="memberCnt"></span>
 				</div>
 				
