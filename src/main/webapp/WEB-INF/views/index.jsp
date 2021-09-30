@@ -70,28 +70,55 @@ ul li {
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="#main"> HOME
 					</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="center_list">
-							센터찾기 </a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="openstore">
-							입점문의 </a></li>
+					<c:choose>
+						<c:when test="${admin == 'Y'&& userId != null }"></c:when>
+						<c:otherwise>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="center_list">
+									센터찾기 </a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="openstore">
+									입점문의 </a></li>
+						</c:otherwise>
+					</c:choose>
 					<c:if test="${not empty sessionScope.userName}">
-						<li class="nav-item mx-0 mx-lg-1"><a
-							class="nav-link py-3 px-0 px-lg-3 rounded" href="myinfo_view">
-								마이페이지 </a>
-							<ul id="sub-menu">
-								<li><a href="myinfo_view" aria-label="subemnu">내 정보</a></li>
-								<li><a href="interest_list" aria-label="subemnu">관심목록</a></li>
-							</ul></li>
+						<c:if test="${admin == 'N' }">
+							<li class="nav-item mx-0 mx-lg-1">
+								<a class="nav-link py-3 px-0 px-lg-3 rounded" href="myinfo_view">
+									마이페이지 </a>
+								<ul id="sub-menu">
+									<li><a href="myinfo_view" aria-label="subemnu">내 정보</a></li>
+									<li><a href="interest_list" aria-label="subemnu">관심목록</a></li>
+								</ul>
+							</li>
+						</c:if>
+						<c:if test="${admin == 'Y' }">
+							<li class="nav-item mx-0 mx-lg-1"><a  class="nav-link py-3 px-0 px-lg-3 rounded" href="#">서비스통계</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a  class="nav-link py-3 px-0 px-lg-3 rounded" href="#">센터관리</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a  class="nav-link py-3 px-0 px-lg-3 rounded" href="#">회원관리</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="#">
+									고객센터 </a>
+								<ul id="sub-menu">
+									<li><a href="#" aria-label="subemnu">공지관리</a></li>
+									<li><a href="#" aria-label="subemnu">문의관리</a></li>
+								</ul>
+							</li>
+						</c:if>
 					</c:if>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">
-							고객센터 </a>
-						<ul id="sub-menu">
-							<li><a href="#" aria-label="subemnu">공지사항</a></li>
-							<li><a href="#" aria-label="subemnu">QnA</a></li>
-						</ul></li>
+					<c:choose>
+						<c:when test="${admin == 'Y'&& userId != null }"></c:when>
+						<c:otherwise>
+							<li class="nav-item mx-0 mx-lg-1"><a
+								class="nav-link py-3 px-0 px-lg-3 rounded" href="#">
+									고객센터 </a>
+								<ul id="sub-menu">
+									<li><a href="#" aria-label="subemnu">공지사항</a></li>
+									<li><a href="#" aria-label="subemnu">QnA</a></li>
+								</ul>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 			<c:choose>

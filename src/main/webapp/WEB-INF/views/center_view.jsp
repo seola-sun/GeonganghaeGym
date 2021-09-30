@@ -40,7 +40,6 @@
 					$(".rec_cnt").html(count);
 				}
 			});
-
 		}
 
 		// 로그인 유저의 해당 센터 추천 체크
@@ -57,7 +56,6 @@
 						// 꽉 찬 하트 출력
 						$("#recommend")
 								.html("<i class=\"fas fa-heart fa-lg\"></i>그만추천하기");
-
 					} else {
 						// 빈 하트 출력
 						$("#recommend")
@@ -205,7 +203,8 @@
 						style="border: 0; outline: 0; background: none; cursor: pointer">
 						<span id="interest" style="color: gold"></span>
 					</button>
-				</c:if></td>
+				</c:if>
+			</td>
 		</tr>
 	</table>
 	<div id="map" style="width: 40%; height: 250px;"></div>
