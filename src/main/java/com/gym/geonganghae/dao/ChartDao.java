@@ -16,8 +16,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
 import com.gym.geonganghae.dto.ChartDto;
-import com.gym.geonganghae.util.Constant;
 
+import com.gym.geonganghae.util.Constant;
 
 @Service
 public class ChartDao {
@@ -28,10 +28,36 @@ public class ChartDao {
 			public ChartDao() {
 				this.template = Constant.template;
 			}
+			
+		//	private final String GET_MEMBER_CNT="select *from view_member_cnt";
+		//	private final String GET_CENTER_CNT="select *from view_center_cnt";
+		//	private final String GET_RECOMM_CNT="select *from view_recomm_cnt";
+			
+			
+			
 			private final String GET_MEMBER_VALUES="select count,month from view_member_chart";
 			private final String GET_CENTER_VALUES= "select *from view_center_chart";
 			private final String GET_INTEREST_VALUES= "select *from view_interest_chart";
 			private final String GET_SPORTS_VALUES="select *from view_sports_chart";
+			
+			
+			/*
+			public ChartDto getMemCnt(ChartDto dto) {
+					Object[]args = {dto.getValue()};
+					return template.queryForObject(GET_MEMBER_CNT,args,new MemCntRowMapper());
+				 }
+			 
+			public ChartDto getCentCnt(ChartDto dto) {
+					Object[]args = {dto.getValue()};
+					return template.queryForObject(GET_CENTER_CNT,args,new CentCntRowMapper());
+				 }
+			
+			public ChartDto getRecCnt(ChartDto dto) {
+				Object[]args = {dto.getValue()};
+				return template.queryForObject(GET_RECOMM_CNT,args,new RecCntRowMapper());
+			 }
+			
+			*/
 			
 			public List<ChartDto> getMemberChart(ChartDto dto){
 				 return template.query(GET_MEMBER_VALUES, new MemberRowMapper());	
@@ -49,29 +75,44 @@ public class ChartDao {
 					return template.query(GET_SPORTS_VALUES, new SportsRowMapper());		
 			}
 				
+			
 }
 
-class CentertRowMapper implements RowMapper<ChartDto>{
+/*
+class MemCntRowMapper implements RowMapper<ChartDto>{
 	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
-		ChartDto centerChart = new ChartDto();
-		centerChart.setValue(rs.getInt("COUNT"));
-		centerChart.setIndex(rs.getString("MONTH"));
-
-		return  centerChart;
+		ChartDto memCnt = new ChartDto();
+		memCnt.setValue(rs.getInt("COUNT"));
+		
+		
+		return  memCnt;
 	}
 }
 
-class InterestRowMapper implements RowMapper<ChartDto>{
+class CentCntRowMapper implements RowMapper<ChartDto>{
 	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
-		ChartDto interestChart = new ChartDto();
-		interestChart.setValue(rs.getInt("COUNT"));
-		interestChart.setIndex(rs.getString("MONTH"));
-
-		return  interestChart;
+		ChartDto centCnt = new ChartDto();
+		centCnt.setValue(rs.getInt("COUNT"));
+		
+		
+		return  centCnt;
 	}
 }
+
+class RecCntRowMapper implements RowMapper<ChartDto>{
+	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+		// TODO Auto-generated method stub
+		ChartDto recCnt = new ChartDto();
+		recCnt.setValue(rs.getInt("COUNT"));
+		
+		
+		return  recCnt;
+	}
+}
+*/
+
 
 class MemberRowMapper implements RowMapper<ChartDto>{
 	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -84,6 +125,31 @@ class MemberRowMapper implements RowMapper<ChartDto>{
 	}
 }
 
+class CentertRowMapper implements RowMapper<ChartDto>{
+	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+		// TODO Auto-generated method stub
+		ChartDto centerChart = new ChartDto();
+		centerChart.setValue(rs.getInt("COUNT"));
+		centerChart.setIndex(rs.getString("MONTH"));
+		
+
+		return  centerChart;
+	}
+}
+
+
+class InterestRowMapper implements RowMapper<ChartDto>{
+	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+		// TODO Auto-generated method stub
+		ChartDto interestChart = new ChartDto();
+		interestChart.setValue(rs.getInt("COUNT"));
+		interestChart.setIndex(rs.getString("MONTH"));
+
+		return  interestChart;
+	}
+}
+
+
 class SportsRowMapper implements RowMapper<ChartDto>{
 	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
@@ -94,3 +160,5 @@ class SportsRowMapper implements RowMapper<ChartDto>{
 		return  sportsChart;
 	}
 }
+
+
