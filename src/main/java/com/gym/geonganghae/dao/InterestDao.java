@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gym.geonganghae.dto.CenterDto;
 import com.gym.geonganghae.dto.InterestDto;
+import com.gym.geonganghae.dto.RecommendDto;
 import com.gym.geonganghae.util.Constant;
 
 @Repository
@@ -20,7 +21,6 @@ public class InterestDao {
 	// 스프링 프레임워크에서 제공하는 JdbcTemplate 객체를 변수 선언
 	JdbcTemplate template;
 
-	// private SqlSession session;
 	private static InterestDao instance = new InterestDao();
 
 	// 기본 생성자
@@ -55,93 +55,60 @@ public class InterestDao {
 				ps.setString(2, centerCode);
 			}
 		});
-
 	}
-
-	// 게시글 추천여부 검사
-	public int recCheck(String centerCode, String loginId) {
-		int result = 0;
-		try {
-			// session = getSession();
-			// result = (Integer) session.selectOne("board.rec_check", m);
-
-			// RECOMMEND 테이블에 이미 해당 유저가 해당 센터를 관심 등록 하고 있는지 체크하는 쿼리.
-			String check = "SELECT COUNT(*) FROM RECOMMEND WHERE ID = ? AND CENTER_CODE = ?";
-			Object[] args = { loginId, centerCode };
-			result = template.queryForObject(check, args, Integer.class);
-			System.out.println("InterestDao result 값 : " + result);
-
-		} catch (Exception e) {
-			System.out.println("recCheck : " + e);
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	// 게시글 추천
-	public void recUpdate(String centerCode, String loginId) {
-		try {
-			// session = getSession();
-			// session.insert("board.rec_update", m);
-
-//				if (chkRecommend(centerCode, loginId)) 
-//				{
-//					return; // 1건 이상 조회된 경우, 추천 하지 않고 리턴
-//				}
-
-			// 유저가 해당 센터를 추천하고 있지 않은 경우만 관심 등록 추가
-			String recommendUpdate = "INSERT INTO RECOMMEND (ID, CENTER_CODE) VALUES (?, ?)";
-			int updateCnt = this.template.update(recommendUpdate, loginId, centerCode);
-
-			// 추천 테이블에 1건 추가된 경우에만 CENTER 테이블 관심등록수 업데이트
-			if (updateCnt == 1) {
-				String centerUpdate = "UPDATE CENTER SET RECOMMEND_CNT = RECOMMEND_CNT + 1 WHERE CENTER_CODE = ?";
-				this.template.update(centerUpdate, centerCode);
-			}
-
-		} catch (Exception e) {
-			System.out.println("recUpdate : " + e);
-			e.printStackTrace();
-		}
-	}
-
-	// 게시글 추천 제거
-	public void recDelete(String centerCode, String loginId) {
-		try {
-			// session = getSession();
-			// session.insert("board.rec_delete", m);
-
-			String recommendUpdate = "DELETE FROM RECOMMEND WHERE ID = ? AND CENTER_CODE = ?";
-			int count = this.template.update(recommendUpdate, loginId, centerCode);
-
-			// 관심 등록에 1건 삭제된 경우에만 CENTER 테이블 관심등록수 업데이트
-			if (count == 1) {
-				String centerUpdate = "UPDATE CENTER SET RECOMMEND_CNT = RECOMMEND_CNT - 1 WHERE CENTER_CODE = ?";
-				this.template.update(centerUpdate, centerCode);
-			}
-
-		} catch (Exception e) {
-			System.out.println("recDelete : " + e);
-			e.printStackTrace();
-		}
-	}
-
-	// 게시글 추천수
-	public int recCount(String centerCode) {
+	
+	// by설아, ajax 관심 등록 체크
+	public int interestChk(String centerCode, String loginId) {
 		int count = 0;
-		try {
-			// session = getSession();
-			// count = (Integer) session.selectOne("board.rec_count", no);
 
-			String check = "SELECT COUNT(*) FROM RECOMMEND WHERE CENTER_CODE = ?";
-			Object[] args = { centerCode };
-			count = template.queryForObject(check, args, Integer.class);
+		String query = "SELECT * FROM INTEREST WHERE ID = ? AND CENTER_CODE = ?";
+		Object[] args = { loginId, centerCode };
 
-		} catch (Exception e) {
-			System.out.println("recCount : " + e);
-			e.printStackTrace();
+		ArrayList<InterestDto> list = (ArrayList<InterestDto>) template.query(query, args,
+				new BeanPropertyRowMapper<InterestDto>(InterestDto.class));
+
+		if (list.size() >= 1) {
+			count = 1; // 이미 관심 등록 하고 있음
+		} else {
+			count = 0; // 관심 등록 가능
 		}
 		return count;
+	}
+
+	public void interUpdate(String centerCode, String userId) {
+		try {
+			// 유저가 해당 센터를 관심 등록 하고 있지 않은 경우만 관심 등록 추가
+			String interestUpdate = "INSERT INTO INTEREST (SEQ, ID, CENTER_CODE) "
+									+ "VALUES ((SELECT NVL(MAX(SEQ), 0) + 1 FROM INTEREST), ?, ?)";
+			int updateCnt = this.template.update(interestUpdate, userId, centerCode);
+
+			// 관심 테이블에 1건 추가된 경우에만 CENTER 테이블 관심 등록수 업데이트
+			if (updateCnt == 1) {
+				String centerUpdate = "UPDATE CENTER SET INTEREST_CNT = INTEREST_CNT + 1 WHERE CENTER_CODE = ?";
+				this.template.update(centerUpdate, centerCode);
+			}
+
+		} catch (Exception e) {
+			System.out.println("interUpdate : " + e);
+			e.printStackTrace();
+		}	
+	}
+
+	public void interDelete(String centerCode, String userId) {
+		try {
+			String interestUpdate = "DELETE FROM INTEREST WHERE ID = ? AND CENTER_CODE = ?";
+			int count = this.template.update(interestUpdate, userId, centerCode);
+
+			// 관심 등록에 1건 삭제된 경우에만 CENTER 테이블 관심 등록수 업데이트
+			if (count == 1) {
+				String centerUpdate = "UPDATE CENTER SET INTEREST_CNT = INTEREST_CNT - 1 WHERE CENTER_CODE = ?";
+				this.template.update(centerUpdate, centerCode);
+			}
+
+		} catch (Exception e) {
+			System.out.println("interDelete : " + e);
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -1,13 +1,11 @@
 package com.gym.geonganghae.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
@@ -23,10 +21,33 @@ public class MemberDao {
 	// 스프링 프레임워크에서 제공하는 JdbcTemplate 객체를 변수 선언
 	JdbcTemplate template;
 
+	private static MemberDao instance = new MemberDao();
+
 	// 기본 생성자
 	public MemberDao() {
 		// JdbcTemplate객체에 dataSource의존성 주입하여 template변수 초기화
 		this.template = Constant.template;
+	}
+
+	public static MemberDao getInstance() {
+		return instance;
+	}
+
+	public int registerCheck(String id) {
+		int result = 0;
+
+		String query = "SELECT * FROM MEMBER WHERE ID = ? ";
+		Object[] args = { id };
+
+		ArrayList<MemberDto> list = (ArrayList<MemberDto>) template.query(query, args,
+				new BeanPropertyRowMapper<MemberDto>(MemberDto.class));
+
+		if (list.size() == 1) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		return result;
 	}
 
 	public void write(final String id, final String password, final String name, final String tel_number,

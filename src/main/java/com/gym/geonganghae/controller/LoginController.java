@@ -50,6 +50,7 @@ public class LoginController
 			// 세션에 속성을 설정하여, 각각 회원 아이디와 이름을 저장한다.
 			session.setAttribute("userId", member.getId());
 			session.setAttribute("userName", member.getName());
+			session.setAttribute("admin", member.getAdmin());
 			
 			// by설아, 로그인 성공 후에는 index화면으로 이동한다.
 			return "redirect:/";
