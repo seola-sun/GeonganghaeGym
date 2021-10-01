@@ -35,13 +35,12 @@ public class InterestDao {
 
 	public ArrayList<InterestDto> list(final String loginId) {
 
-		String query = "SELECT i.id, " + "i.center_Code, " + "c.usage_fee_min, " + "c.interest_cnt, " + "i.regdate "
-				+ "FROM INTEREST i, CENTER c " + "WHERE i.center_Code = c.center_Code " + "AND i.id = '" + loginId
-				+ "'";
+		String query = "SELECT c.CENTER_NAME, " + "c.SPORTS_CODE, " + "i.center_Code, " + "c.usage_fee_min, "
+				+ "c.interest_cnt, " + "i.regdate "+ "FROM INTEREST i, CENTER c "
+				+ "WHERE i.center_Code = c.center_Code " + "AND i.id = '" + loginId + "'";
 
 		return (ArrayList<InterestDto>) template.query(query,
 				new BeanPropertyRowMapper<InterestDto>(InterestDto.class));
-
 	}
 
 	public void delete(final String id, String centerCode) {
@@ -56,7 +55,7 @@ public class InterestDao {
 			}
 		});
 	}
-	
+
 	// by설아, ajax 관심 등록 체크
 	public int interestChk(String centerCode, String loginId) {
 		int count = 0;
@@ -79,7 +78,7 @@ public class InterestDao {
 		try {
 			// 유저가 해당 센터를 관심 등록 하고 있지 않은 경우만 관심 등록 추가
 			String interestUpdate = "INSERT INTO INTEREST (SEQ, ID, CENTER_CODE) "
-									+ "VALUES ((SELECT NVL(MAX(SEQ), 0) + 1 FROM INTEREST), ?, ?)";
+					+ "VALUES ((SELECT NVL(MAX(SEQ), 0) + 1 FROM INTEREST), ?, ?)";
 			int updateCnt = this.template.update(interestUpdate, userId, centerCode);
 
 			// 관심 테이블에 1건 추가된 경우에만 CENTER 테이블 관심 등록수 업데이트
@@ -91,7 +90,7 @@ public class InterestDao {
 		} catch (Exception e) {
 			System.out.println("interUpdate : " + e);
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	public void interDelete(String centerCode, String userId) {
