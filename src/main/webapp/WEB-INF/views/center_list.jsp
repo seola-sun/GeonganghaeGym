@@ -100,9 +100,39 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	
 			</div>
 		</div>
+<!-- *******************PAGING*********************************************** -->	
+		<div class="paging-num-list">
+		
+		<c:set var="page" value="${(param.p==null)?1:param.p}"/>
+		<c:set var="startNum" value="${page-(page-1)%5}"/>
+		<c:set var="LastNum" value="60"/>
+		
+			 <c:if test="${startNum>1}">
+			 	<a href="?p=${startNum-1}" >&lt</a></span>
+			 </c:if>
+			 
+			 <c:if test="${startNum<=1}">
+			 	<span onclick="alert('이전 페이지가 없습니다.);"><a href="">&lt</a></span>
+			  </c:if>
+					<ul class="center-number-list">
+						<c:forEach var="i" begin="0" end="4">
+						<li><a class="center-number" href="?p=${startNum+i}">${startNum+i}</a></li>
+						</c:forEach>
+					</ul>
+			 <c:if test="${startNum+5 < LastNum}">
+			 	<a href="?p=${startNum+5}" >&gt</a>
+			  </c:if>
+			  <c:if test="${startNum+5 >= LastNum}">
+			 <span onclick="alert('다음 페이지가 없습니다.)"><a href="" >&gt</a></span>
+			  </c:if>
+	</div>
+<!-- ****************************************************************** -->	
 	</section>
+	
 	<!-- Bootstrap core JS-->
 	<!-- 창 축소할때 메뉴 네비게이션 출력 -->
 	<script
