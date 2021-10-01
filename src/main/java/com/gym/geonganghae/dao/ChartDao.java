@@ -29,9 +29,7 @@ public class ChartDao {
 				this.template = Constant.template;
 			}
 			
-		//	private final String GET_MEMBER_CNT="select *from view_member_cnt";
-		//	private final String GET_CENTER_CNT="select *from view_center_cnt";
-		//	private final String GET_RECOMM_CNT="select *from view_recomm_cnt";
+	
 			
 			
 			
@@ -41,24 +39,7 @@ public class ChartDao {
 			private final String GET_SPORTS_VALUES="select *from view_sports_chart";
 			
 			
-			/*
-			public ChartDto getMemCnt(ChartDto dto) {
-					Object[]args = {dto.getValue()};
-					return template.queryForObject(GET_MEMBER_CNT,args,new MemCntRowMapper());
-				 }
-			 
-			public ChartDto getCentCnt(ChartDto dto) {
-					Object[]args = {dto.getValue()};
-					return template.queryForObject(GET_CENTER_CNT,args,new CentCntRowMapper());
-				 }
-			
-			public ChartDto getRecCnt(ChartDto dto) {
-				Object[]args = {dto.getValue()};
-				return template.queryForObject(GET_RECOMM_CNT,args,new RecCntRowMapper());
-			 }
-			
-			*/
-			
+		
 			public List<ChartDto> getMemberChart(ChartDto dto){
 				 return template.query(GET_MEMBER_VALUES, new MemberRowMapper());	
 			}
@@ -77,41 +58,6 @@ public class ChartDao {
 				
 			
 }
-
-/*
-class MemCntRowMapper implements RowMapper<ChartDto>{
-	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
-		ChartDto memCnt = new ChartDto();
-		memCnt.setValue(rs.getInt("COUNT"));
-		
-		
-		return  memCnt;
-	}
-}
-
-class CentCntRowMapper implements RowMapper<ChartDto>{
-	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
-		ChartDto centCnt = new ChartDto();
-		centCnt.setValue(rs.getInt("COUNT"));
-		
-		
-		return  centCnt;
-	}
-}
-
-class RecCntRowMapper implements RowMapper<ChartDto>{
-	public ChartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
-		ChartDto recCnt = new ChartDto();
-		recCnt.setValue(rs.getInt("COUNT"));
-		
-		
-		return  recCnt;
-	}
-}
-*/
 
 
 class MemberRowMapper implements RowMapper<ChartDto>{

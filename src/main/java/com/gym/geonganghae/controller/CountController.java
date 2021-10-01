@@ -31,11 +31,7 @@ public class CountController {
 	@RequestMapping(value="chart", method=RequestMethod.GET)
 	public  String Chart(ChartDto chartDto,ChartDao ChartDao,Model model){
 		
-		/*
-		model.addAttribute("memberCnt", ChartDao.getMemCnt(chartDto));
-		model.addAttribute("centerCnt", ChartDao.getCentCnt(chartDto));
-		model.addAttribute("recommCnt", ChartDao.getRecCnt(chartDto));
-		*/
+		
 		model.addAttribute("memberChart", ChartDao.getMemberChart(chartDto));
 		model.addAttribute("centerChart", ChartDao.getCenterChart(chartDto));
 		model.addAttribute("interestChart",ChartDao.getInterestChart(chartDto));
