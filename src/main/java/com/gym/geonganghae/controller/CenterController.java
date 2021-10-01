@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gym.geonganghae.command.CenterCommand;
 import com.gym.geonganghae.command.Command;
@@ -17,11 +18,24 @@ public class CenterController
 	Command command = null;
 
 	// by설아, 센터 목록을 보여주는 메소드이다.
+	
+	/*
+	@RequestMapping(value="/center_list", method=RequestMethod.GET)
+	public String getNoticeInsert(HttpServletRequest request,Model model ){
+	
+			return"center_list";
+	}
+	*/
+	
 	@RequestMapping("/center_list")
-	public String list(Model model) 
+	public String list(HttpServletRequest request,Model model) 
 	{
+		
+	
 		// by설아, Command인터페이스를 구현한 ListCommand 객체를 생성하여
 		// command변수를 초기화한다.
+		
+		model.addAttribute("request", request);
 		command = new ListCommand();
 		
 		// by설아, 센터 목록을 구해 model 객체의 속성값으로 저장한다.

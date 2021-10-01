@@ -17,8 +17,20 @@ public class ListCommand implements Command {
 	// by 설아, 센터 목록 표시
 	@Override
 	public void execute(Model model) {
+		
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		String page = request.getParameter("p");
 		CenterDao centerDao = new CenterDao();
-		ArrayList<CenterDto> dtos = centerDao.list();
+		ArrayList<CenterDto> dtos;
+		if(page == null)
+			dtos = centerDao.getCenterList();
+		else
+			dtos = centerDao.getCenterList(Integer.parseInt(page));
+		
+ 
+			
 		model.addAttribute("list", dtos);
 	}
 	

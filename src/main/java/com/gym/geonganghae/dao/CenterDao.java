@@ -1,6 +1,7 @@
 package com.gym.geonganghae.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -48,7 +49,29 @@ public class CenterDao
 		return (ArrayList<CenterDto>) template.query(query, 
 				new BeanPropertyRowMapper<CenterDto>(CenterDto.class));
 	}
-
+	
+	
+		public ArrayList<CenterDto> getCenterList(){
+			return getCenterList(1);
+		}
+	
+		public ArrayList<CenterDto> getCenterList(int page){
+			
+			String query="select *from("
+					+ "select rownum insideRnum, num.* "
+					+ "from (select *from center_view )num"
+					+ ")"
+					+ "where insideRnum between 1+("+ page +"-1)*10 and "+page+"*10";
+			
+			return (ArrayList<CenterDto>) template.query(query, 
+					new BeanPropertyRowMapper<CenterDto>(CenterDto.class));
+		}
+	
+			
+	
+	
+	
+	
 	// by설아, 센터 코드로 센터의 상세 정보를 조회하는 메소드
 	public CenterDto centerView(String centerCode) 
 	{
