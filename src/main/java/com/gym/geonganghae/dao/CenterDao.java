@@ -50,11 +50,13 @@ public class CenterDao
 				new BeanPropertyRowMapper<CenterDto>(CenterDto.class));
 	}
 	
-	
+		//by하니, 첫번째 페이지의 경우 파라미터 page의 값이 넘어오지 않을 것을 
+		//고려하여 임의값 1을 지정하여 getCenterList(int page) 함수를 불러준다.
 		public ArrayList<CenterDto> getCenterList(){
 			return getCenterList(1);
 		}
 	
+		//by하니,센터 목록을 paging 하여 조회하기 위한  메소드
 		public ArrayList<CenterDto> getCenterList(int page){
 			
 			String query="select *from("

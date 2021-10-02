@@ -35,6 +35,8 @@ public class CenterController
 		// by설아, Command인터페이스를 구현한 ListCommand 객체를 생성하여
 		// command변수를 초기화한다.
 		
+		//by하니, excute 메소드에서 request 객체의 정보를 사용
+		//할 수 있도록 값을 model에 저장한다.
 		model.addAttribute("request", request);
 		command = new ListCommand();
 		

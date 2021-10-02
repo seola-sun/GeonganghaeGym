@@ -18,11 +18,18 @@ public class ListCommand implements Command {
 	@Override
 	public void execute(Model model) {
 		
+		//by 하니, request 객체를 이용해서 get으로 넘겨 
+		//받은 p값을 구한다.
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
 		String page = request.getParameter("p");
+		
+		//by,하니 getCenterList 함수를 호출하기 위한 
+		//ceterDao 객체를 생성한다.
 		CenterDao centerDao = new CenterDao();
+		
+		//by,하니 첫번째 페이지를 불러올경우 파라미터 값이
+		//null일 것을 대비하여, if문으로 page값을 이용 취사 선택
 		ArrayList<CenterDto> dtos;
 		if(page == null)
 			dtos = centerDao.getCenterList();
