@@ -28,8 +28,6 @@ public class ListCommand implements Command {
 			dtos = centerDao.getCenterList();
 		else
 			dtos = centerDao.getCenterList(Integer.parseInt(page));
-		
- 
 			
 		model.addAttribute("list", dtos);
 	}
