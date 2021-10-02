@@ -1,18 +1,10 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 글꼴을 링크에서 가져옴 -->
-<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css"
-	rel="stylesheet">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>센터 목록</title>
-<!-- Core theme CSS (includes Bootstrap)-->
+<%@ include file="header.jsp"%>
+
+
 <link href="./resources/css/center_list.css" rel="stylesheet" />
 <link href="./resources/css/center_list02.css" rel="stylesheet" /> 
-</head>
-<body id="page-top">
-	<%@ include file="header.jsp" %>
+
 	
 	<section class="page-section portfolio" id="portfolio">
 		<div class="container">
