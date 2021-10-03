@@ -23,6 +23,7 @@ public class ListCommand implements Command {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String page = request.getParameter("p");
+		String centerName = request.getParameter("centerName");
 		
 		//by,하니 getCenterList 함수를 호출하기 위한 
 		//ceterDao 객체를 생성한다.
@@ -33,12 +34,22 @@ public class ListCommand implements Command {
 		ArrayList<CenterDto> dtos;
 		if(page == null)
 			dtos = centerDao.getCenterList();
-		else
+		else if (centerName == null)
 			dtos = centerDao.getCenterList(Integer.parseInt(page));
-		
- 
+		else
+			dtos = centerDao.getCenterList(centerName,Integer.parseInt(page));
 			
-		model.addAttribute("list", dtos);
+		
+		
+		//by,하니 총 center 레코드 개수를 구하기위한 int 변수 생성
+		int centerTotal;
+		if(centerName == null)
+		 centerTotal =centerDao.getTotal();
+		else
+		 centerTotal =centerDao.getTotal(centerName);
+ 
+		 model.addAttribute("centerTotal",centerTotal);
+		 model.addAttribute("list", dtos);
 	}
 	
 	// by 희준, 관심 목록 표시
@@ -56,3 +67,4 @@ public class ListCommand implements Command {
 	}
 
 }
+

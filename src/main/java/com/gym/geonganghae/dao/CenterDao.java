@@ -1,13 +1,17 @@
 package com.gym.geonganghae.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.gym.geonganghae.dto.CenterDto;
+import com.gym.geonganghae.dto.ChartDto;
 import com.gym.geonganghae.util.Constant;
 
 /**
@@ -59,6 +63,8 @@ public class CenterDao
 		//by하니,센터 목록을 paging 하여 조회하기 위한  메소드
 		public ArrayList<CenterDto> getCenterList(int page){
 			
+					 return getCenterList("",  page);
+			/*
 			String query="select *from("
 					+ "select rownum insideRnum, num.* "
 					+ "from (select *from center_view )num"
@@ -67,10 +73,46 @@ public class CenterDao
 			
 			return (ArrayList<CenterDto>) template.query(query, 
 					new BeanPropertyRowMapper<CenterDto>(CenterDto.class));
+					*/
 		}
-	
+		
+		
+		public ArrayList<CenterDto> getCenterList(String centerName, int page){
 			
-	
+			String searchWord = "'"+'%'+centerName+'%'+"'";
+			
+			String query="select *from("
+					+ "select rownum insideRnum, num.* "
+					+ "from (select *from center_view where center_name like "+searchWord+" )num"
+					+ ")"
+					+ "where insideRnum between 1+("+ page +"-1)*10 and "+page+"*10";
+			
+			return (ArrayList<CenterDto>) template.query(query, 
+					new BeanPropertyRowMapper<CenterDto>(CenterDto.class));
+		}
+		
+		//by하니, paging을 위한 총 center 레코들 수를 구하기 위한 함수
+		public int getTotal(){
+			
+			String query ="select count(center_code) as count "
+					+ " from center";
+			CenterDto dto = template.queryForObject(query,new TotalRowMapper());
+			return dto.getCenterTotal();
+			
+		}
+		
+		public int getTotal(String centerName){
+			String searchWord = "'"+'%'+centerName+'%'+"'";
+			
+			String query="select count(center_code) as count from("
+					+ "select rownum insideRnum, num.* "
+					+ "from (select *from center_view where center_name like "+searchWord+" )num"
+					+ ")";
+					
+			CenterDto dto = template.queryForObject(query,new TotalRowMapper());
+			return dto.getCenterTotal();
+			
+		}
 	
 	
 	
@@ -87,4 +129,16 @@ public class CenterDao
 				new BeanPropertyRowMapper<CenterDto>(CenterDto.class));
 	}
 
+}
+
+
+class TotalRowMapper implements RowMapper<CenterDto>{
+	public CenterDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+		// TODO Auto-generated method stub
+		CenterDto centerTotal = new CenterDto();
+		centerTotal.setCenterTotal(rs.getInt("count"));
+		
+
+		return  centerTotal;
+	}
 }

@@ -25,6 +25,7 @@ public class CenterDto {
 	private int interestCnt;
 	private int recommendCnt;
 	private Date regDate;
+	private int  centerTotal;
 
 	public CenterDto() {
 		// TODO Auto-generated constructor stub
@@ -197,5 +198,15 @@ public class CenterDto {
 	public void setSportsName(String sportsName) {
 		this.sportsName = sportsName;
 	}
+
+	public int getCenterTotal() {
+		return centerTotal;
+	}
+
+	public void setCenterTotal(int centerTotal) {
+		this.centerTotal = centerTotal;
+	}
+	
+	
 
 }

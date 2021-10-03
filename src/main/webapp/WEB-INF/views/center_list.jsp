@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 글꼴을 링크에서 가져옴 -->
 <link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css"
 	rel="stylesheet">
@@ -99,37 +100,49 @@
 				<td>${dto.recommendCnt}</td>
 			</tr>
 		</c:forEach>
-	</table>
-	
-	
-			</div>
-		</div>
-<!-- *******************PAGING*********************************************** -->	
-		<div class="paging-num-list">
+			<tr>
+				<td>
+					<div>
+					
+					<c:set var="page" value="${(empty param.p)?1:param.p}"/>
+					<c:set var="startNum" value="${page-(page-1)%5}"/>
+					<c:set var="LastNum" value="${fn:substringBefore(Math.ceil(centerTotal/10),'.')}"/>
 		
-		<c:set var="page" value="${(param.p==null)?1:param.p}"/>
-		<c:set var="startNum" value="${page-(page-1)%5}"/>
-		<c:set var="LastNum" value="60"/>
+						<span> ${(empty param.p)?1:param.p}&#47;${LastNum}pages</span>
+					</div>
+				</td>
+			</tr>
+		<tr><td>
+			<div class="paging-num-list">
 		
 			 <c:if test="${startNum>1}">
 			 	<a href="?p=${startNum-1}" >&lt</a></span>
 			 </c:if>
 			 
 			 <c:if test="${startNum<=1}">
-			 	<span onclick="alert('이전 페이지가 없습니다.);"><a href="">&lt</a></span>
+			 	<span onclick="alert('이전 페이지가 없습니다.);"><a href=""> &lt </a></span>
 			  </c:if>
 					<ul class="center-number-list">
 						<c:forEach var="i" begin="0" end="4">
 						<li><a class="center-number" href="?p=${startNum+i}">${startNum+i}</a></li>
 						</c:forEach>
 					</ul>
-			 <c:if test="${startNum+5 < LastNum}">
-			 	<a href="?p=${startNum+5}" >&gt</a>
-			  </c:if>
-			  <c:if test="${startNum+5 >= LastNum}">
-			 <span onclick="alert('다음 페이지가 없습니다.)"><a href="" >&gt</a></span>
-			  </c:if>
+					<c:if test="${startNum+4 < LastNum}">
+				 	<a href="?p=${startNum+5}&t=&q=" >&gt</a>
+				  </c:if>
+				  <c:if test="${startNum+4>= LastNum}">
+				 <span onclick="alert('다음 페이지가 없습니다.)"><a href="" >&gt</a></span>
+				  </c:if>
+
 	</div>
+		</td></tr>
+	</table>
+	
+	
+			</div>
+		</div>
+<!-- *******************PAGING*********************************************** -->	
+		
 <!-- ****************************************************************** -->	
 	</section>
 	
@@ -138,11 +151,12 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
+	<script src="./resources/js/scripts.js"></script>
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 	<!-- * *                               SB Forms JS                               * *-->
 	<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+	
 	</body>
 	</html>
