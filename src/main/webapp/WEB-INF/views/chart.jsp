@@ -116,7 +116,13 @@ ul li {
 	<!-- Masthead-->
 	<header class="masthead bg-primary text-white text-center" id="main">
 		<!-----------------------------------------------------------------------------------------  -->
-		<div class="chart-container">
+		
+		
+	</header>
+
+	<!-- Portfolio Section-->
+	<section class="page-section portfolio" id="portfolio">
+	<div class="chart-container">
 			<div class="row">
 		
 				 
@@ -189,12 +195,6 @@ ul li {
 				
 			</div>
 		</div>	
-		
-	</header>
-
-	<!-- Portfolio Section-->
-	<section class="page-section portfolio" id="portfolio">
-		<!-- /////////////////////////////////////////////////////////////////----------------- -->
 	</section>
 
 

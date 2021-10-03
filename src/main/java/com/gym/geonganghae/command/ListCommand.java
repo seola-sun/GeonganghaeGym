@@ -36,7 +36,7 @@ public class ListCommand implements Command {
 			dtos = centerDao.getCenterList();
 		else if (centerName == null)
 			dtos = centerDao.getCenterList(Integer.parseInt(page));
-<<<<<<< HEAD
+
 		else
 			dtos = centerDao.getCenterList(centerName,Integer.parseInt(page));
 			
@@ -51,10 +51,10 @@ public class ListCommand implements Command {
  
 		 model.addAttribute("centerTotal",centerTotal);
 		 model.addAttribute("list", dtos);
-=======
+
 			
 		model.addAttribute("list", dtos);
->>>>>>> 583ab0f2a51edbb853636b744fe979b18fd47707
+
 	}
 	
 	// by 희준, 관심 목록 표시
