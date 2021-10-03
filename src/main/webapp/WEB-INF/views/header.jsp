@@ -100,8 +100,8 @@ ul li {
 						</c:if>
 						<c:if test="${admin == 'Y' }">
 							<li class="nav-item mx-0 mx-lg-1"><a  class="nav-link py-3 px-0 px-lg-3 rounded" href="chart">서비스통계</a></li>
-							<li class="nav-item mx-0 mx-lg-1"><a  class="nav-link py-3 px-0 px-lg-3 rounded" href="#">센터관리</a></li>
-							<li class="nav-item mx-0 mx-lg-1"><a  class="nav-link py-3 px-0 px-lg-3 rounded" href="#">회원관리</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a  class="nav-link py-3 px-0 px-lg-3 rounded" href="manager_center_list">센터관리</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a  class="nav-link py-3 px-0 px-lg-3 rounded" href="manager_member_list">회원관리</a></li>
 							<li class="nav-item mx-0 mx-lg-1"><a
 								class="nav-link py-3 px-0 px-lg-3 rounded" href="#">
 									고객센터 </a>
