@@ -11550,18 +11550,25 @@ html {
 	
 	
 	  border-radius: 50px; 
+	  text-align:center;
 	
 	
 }
        
 .chart-container div span {
 		
+		color: white; 
 		 font-size:15px;
-		font-family: Nanum Gothic; 
+		font-family: Nanum Gothic;
+		text-align:center;
+		
 }
 
 .chart-container div .total-num {
-		
+	
+		color: white;
 		font-size:30;
 		font-family: Nanum Gothic; 
+		text-align:center;
+		
 }

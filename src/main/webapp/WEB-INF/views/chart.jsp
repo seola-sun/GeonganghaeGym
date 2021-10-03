@@ -128,7 +128,7 @@ ul li {
 				 
 			
 				<div class="col-md-2" >
-					여백
+					
 				</div>
 			
 				<div class="col-md-2 number-box" style="background-color:#9a67ea">
@@ -136,7 +136,7 @@ ul li {
 				</div>
 				
 				<div class="col-md-1" >
-					여백
+					
 				</div>
 				
 				<div class="col-md-2 number-box" class="number-box" style="background-color:#75a7ff">
@@ -146,7 +146,7 @@ ul li {
 				</div>
 				
 				<div class="col-md-1" >
-					여백
+					
 				</div>
 				
 				<div class="col-md-2 number-box" class="number-box" style="background-color:#198754">
@@ -155,7 +155,7 @@ ul li {
 				
 				<div class="col-md-2">
 				
-					여백
+					
 				</div>
 						
 <!------------------------------------------------- NEXT LINE ------------------------------->					
