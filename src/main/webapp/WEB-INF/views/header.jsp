@@ -28,10 +28,6 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="./resources/css/styles.css" rel="stylesheet" />
 
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="./resources/css/interest_list.css" rel="stylesheet" />
-<link href="./resources/css/interest_list02.css" rel="stylesheet" />
-
 <!-- 상단 메뉴바 하위 목록들 CSS, css파일로 옮기면 적용이 안됨 -->
 <style>
 a {

@@ -63,11 +63,15 @@ public class CenterDao
 		//by하니,센터 목록을 paging 하여 조회하기 위한  메소드
 		public ArrayList<CenterDto> getCenterList(int page){
 			
+<<<<<<< HEAD
 					 return getCenterList("",  page);
 			/*
 			String query="select *from("
+=======
+			String query="select * from("
+>>>>>>> 583ab0f2a51edbb853636b744fe979b18fd47707
 					+ "select rownum insideRnum, num.* "
-					+ "from (select *from center_view )num"
+					+ "from (select * from center_view )num"
 					+ ")"
 					+ "where insideRnum between 1+("+ page +"-1)*10 and "+page+"*10";
 			
@@ -75,6 +79,7 @@ public class CenterDao
 					new BeanPropertyRowMapper<CenterDto>(CenterDto.class));
 					*/
 		}
+<<<<<<< HEAD
 		
 		
 		public ArrayList<CenterDto> getCenterList(String centerName, int page){
@@ -115,6 +120,8 @@ public class CenterDao
 		}
 	
 	
+=======
+>>>>>>> 583ab0f2a51edbb853636b744fe979b18fd47707
 	
 	// by설아, 센터 코드로 센터의 상세 정보를 조회하는 메소드
 	public CenterDto centerView(String centerCode) 
