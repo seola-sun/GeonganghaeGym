@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<<<<<<< HEAD
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 글꼴을 링크에서 가져옴 -->
@@ -10,11 +10,11 @@
 <head>
 <title>센터 목록</title>
 <!-- Core theme CSS (includes Bootstrap)-->
-=======
+
 <%@ include file="header.jsp"%>
 
 
->>>>>>> 583ab0f2a51edbb853636b744fe979b18fd47707
+
 <link href="./resources/css/center_list.css" rel="stylesheet" />
 <link href="./resources/css/center_list02.css" rel="stylesheet" /> 
 
