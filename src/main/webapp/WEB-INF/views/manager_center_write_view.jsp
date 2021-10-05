@@ -65,7 +65,7 @@ function findCoordinate(address) {
 </script>
 </head>
 <body>
-	<table class="type03" style="position:absolute; left:0px; top:100px;" >
+	<table class="type03" style="position:absolute; left:30%; top:100px;" >
 		<form action="manager_center_write" method="post" enctype="multipart/form-data">
 			<tr>
 				<th> 센터코드 </th>

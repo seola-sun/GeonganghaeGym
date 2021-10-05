@@ -155,7 +155,7 @@
 					<br />
 					<div class="submit">
 						<input type="submit" id="submit"
-							style="width: 120pt; height: 40pt; position: absolute; left: 600px; top: 250px;"
+							style="width: 120pt; height: 40pt; position: absolute; left: 45%; top: 250px;"
 							value="로그인" />
 					</div>
 				</form>

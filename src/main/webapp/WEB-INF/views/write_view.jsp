@@ -317,7 +317,7 @@
 						<br />
 						<div class="submit">
 							<input type="submit" 
-								style="width: 120pt; height: 40pt; position: absolute; left: 600px; top: 450px;"
+								style="width: 120pt; height: 40pt; position: absolute; left: 45%; top: 500px;"
 								value="회원가입" />
 						</div>
 					</form>

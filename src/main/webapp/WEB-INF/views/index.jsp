@@ -3,6 +3,7 @@
 	
 <%@ include file="header.jsp"%>
 
+
 <!-- Masthead-->
 <header class="masthead bg-primary text-white text-center" id="main">
 	<div class="container d-flex align-items-center flex-column">

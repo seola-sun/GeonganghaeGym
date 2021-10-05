@@ -66,7 +66,7 @@ function findCoordinate(address) {
 
 </head>
 <body>
-	<table class= "type03">
+	<table class= "type03" style="position:absolute; left:25%;">
 		<form action="manager_center_modify" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="centerCode" value="${manager_center_modify_view.centerCode}">			
 		<tr>

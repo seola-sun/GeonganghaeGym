@@ -5,7 +5,7 @@
 <link href="./resources/css/center_list02.css" rel="stylesheet" /> 
 
 <body>
-	<table class="type03" style="position:absolute; left:0px; top:100px;" >
+	<table class="type03" style="position:absolute; left:30%; top:100px;" >
 			<form action="manager_member_modify_view?id=${manager_member_content_view.id}" method="post">
 			<tr>
 				<th> 이름 </th>

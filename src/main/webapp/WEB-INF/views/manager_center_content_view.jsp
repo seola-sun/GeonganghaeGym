@@ -5,7 +5,7 @@
 <link href="./resources/css/center_view02.css" rel="stylesheet" />
 
 <body>
-	<table class= "type03">
+	<table class= "type03" style="position:absolute; left:30%;">
 		<form action="manager_center_modify_view?centerCode=${manager_center_content_view.centerCode}" method="post">
 		<input type="hidden" name="centerCode" value="${ manager_center_content_view.centerCode}">
 		<tr>

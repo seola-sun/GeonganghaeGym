@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
 
+
 <link href="./resources/css/center_list02.css" rel="stylesheet" /> 
 
 
@@ -146,7 +147,7 @@
 			</tr>
 		</c:forEach>
 		<tr>
-			<button type="button" class="myButton" style="position:absolute; left:600px; top:500px;"
+			<button type="button" class="myButton" style="position:absolute; left:45%; top:80%;"
 			onclick="location.href='manager_center_write_view' ">센터 등록하기</button>
 		</tr>
 	</table>
