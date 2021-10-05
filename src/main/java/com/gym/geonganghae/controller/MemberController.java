@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gym.geonganghae.command.Command;
 import com.gym.geonganghae.command.DeleteCommand;
@@ -62,15 +63,16 @@ public class MemberController {
 		return "redirect:myinfo_view";
 	}	
 	
-	@RequestMapping("/delete")
-	public String delete(HttpServletRequest request, Model model) {
+	
+	@ResponseBody
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public void delete(HttpServletRequest request, Model model) {
 		System.out.println("delete()");
 		
 		model.addAttribute("request", request);
 		command = new DeleteCommand();
 		command.execute(model);
 		
-		return "redirect:/";
 	}
 
 }

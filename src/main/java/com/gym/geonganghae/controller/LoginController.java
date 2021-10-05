@@ -1,14 +1,20 @@
 package com.gym.geonganghae.controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.gym.geonganghae.command.Command;
 import com.gym.geonganghae.dao.MemberDao;
 import com.gym.geonganghae.dto.MemberDto;
+import com.gym.geonganghae.service.Action;
+import com.gym.geonganghae.service.IdExist;
 
 /**
  * @author 설아
@@ -17,6 +23,8 @@ import com.gym.geonganghae.dto.MemberDto;
 @Controller
 public class LoginController
 {
+	Action action = null;
+	
 	// by설아, GET방식으로 login 페이지가 요청된 경우,
 	// 로그인 페이지를 보여주는 메소드이다.
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -61,5 +69,19 @@ public class LoginController
 			// login화면을 다시 보여 준다.
 			return "login";
 		}
+	}
+	
+	@RequestMapping(value = "/idExist", method = RequestMethod.POST)
+	public void idExist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("idExist()");
+
+		try {
+			action = new IdExist();
+			action.execute(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 }

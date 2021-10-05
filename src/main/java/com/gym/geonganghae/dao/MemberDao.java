@@ -99,4 +99,21 @@ public class MemberDao {
 		});
 	}
 
+	public int idExistCheck(String id, String password) {
+		int result = 0;
+
+		String query = "SELECT * FROM MEMBER WHERE ID = ? AND PASSWORD = ?";
+		Object[] args = { id, password };
+
+		ArrayList<MemberDto> list = (ArrayList<MemberDto>) template.query(query, args,
+				new BeanPropertyRowMapper<MemberDto>(MemberDto.class));
+
+		if (list.size() == 1) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		return result;
+	}
+
 }
