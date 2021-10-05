@@ -58,7 +58,8 @@ public class ListCommand implements Command {
 	}
 	
 	// by 희준, 관심 목록 표시
-	public void interList(Model model) {
+	// public void interList(Model model) {
+	public ArrayList<InterestDto> interList(Model model) {
 		InterestDao dao = new InterestDao();
 		
 		Map<String, Object> map = model.asMap();
@@ -68,6 +69,9 @@ public class ListCommand implements Command {
 		
 		ArrayList<InterestDto> dtos = dao.list(loginId);
 		model.addAttribute("list", dtos);
+		
+		// 추가
+		return dtos;
 
 	}
 

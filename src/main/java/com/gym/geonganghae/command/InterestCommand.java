@@ -16,9 +16,10 @@ public class InterestCommand implements Command {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		String loginId = LoginCommand.loginChk(request);
+		//String loginId = LoginCommand.loginChk(request);
 		
-		String centerCode = request.getParameter("centerCode");
+		String centerCode = request.getParameter("center");
+		String loginId = request.getParameter("member");
 		
 		InterestDao dao = new InterestDao();
 		dao.delete(loginId, centerCode);

@@ -225,7 +225,7 @@
 						<div id="map"
 							style="width: 35%; height: 400px; position: absolute; left: 800px; top: 170px"></div>
 						<script
-							src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b1e3e0136f0fc88ecaeba5b03e78531&libraries=services"></script>
+							src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb1f6c28607b26aa93fbe7eb6a7f3562&libraries=services"></script>
 						<script>
 							var mapContainer = document.getElementById("map");
 							var latitude = document.getElementById("latitude").value;
