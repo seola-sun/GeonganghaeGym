@@ -82,23 +82,9 @@
 						<th>관심등록수</th>
 						<th>추천수</th>
 						<th>등록일</th>
-						<th>삭제</th>
+						<th></th>
 					</tr>
 				</thead>
-				<%-- <tbody>
-					<c:forEach items="${list}" var="dto">
-						<tr>
-							<td>${dto.centerName}</td>
-							<td>${dto.sportsCode}</td>
-							<td>${dto.usage_fee_min}</td>
-							<td>${dto.interest_cnt}</td>
-							<td>${dto.recommend_cnt}</td>
-							<td>${dto.regDate}</td>
-							<td><a href="InterDelete?centerCode=${dto.centerCode}">
-									삭제 </a></td>
-						</tr>
-					</c:forEach>
-				</tbody> --%>
 			</table>
 		</div>
 	</div>
