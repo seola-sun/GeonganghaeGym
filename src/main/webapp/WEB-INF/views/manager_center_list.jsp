@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<%@ include file="header.jsp"%>
+
+<link href="./resources/css/center_list02.css" rel="stylesheet" /> 
+
+
 <body>
 	<%
 		String centerNameKeyword = request.getParameter("centerNameKeyword");
@@ -64,7 +62,7 @@
 		}
 	%>
 	<form action="manager_center_list" method="post">
-		<table border="1">
+		<table class="type03" style="position:absolute; left:0px; top:100px;" >
 			<tr>
 				<th>센터명</th>
 				<td align="right">
@@ -101,7 +99,7 @@
 			</tr>
 			<tr>
 				<th>위치</th>
-				<td align="right">
+				<td align="right" style="width:25%;">
 					<select name="sidoKeyword">
 						<%-- <c:forEach items="${conditionMap}" var="option">
 							<option value="${option.value}">${option.key}
@@ -125,7 +123,8 @@
 			</tr>
 		</table>
 	</form>
-	<table border="1">
+<table class="type09" style="position:absolute; top:300px;">
+	<thead>
 		<tr>
 			<td>업체명</td>
 			<td>주요 종목</td>
@@ -134,9 +133,11 @@
 			<td>관심등록수</td>
 			<td>추천수</td>
 		</tr>
+		</thead>
 		<c:forEach items="${manager_center_list}" var="dto">
 			<tr>
-				<td><a href="manager_center_content_view?centerCode=${dto.centerCode}">${dto.centerName}</a></td>
+				<td><a href="manager_center_content_view?centerCode=${dto.centerCode}"
+				style="color: black; font-weight:bold; text-decoration: underline;">${dto.centerName}</a></td>
 				<td>${dto.sportsName}</td>
 				<td>${dto.usageFeeMin}</td> 
 				<td>${dto.usageFeeMax}</td>
@@ -145,7 +146,8 @@
 			</tr>
 		</c:forEach>
 		<tr>
-			<button type="button" onclick="location.href='manager_center_write_view' ">센터 등록하기</button>
+			<button type="button" class="myButton" style="position:absolute; left:600px; top:500px;"
+			onclick="location.href='manager_center_write_view' ">센터 등록하기</button>
 		</tr>
 	</table>
 </body>

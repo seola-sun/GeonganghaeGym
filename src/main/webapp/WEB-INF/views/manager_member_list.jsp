@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원관리</title>
-</head>
+<%@ include file="header.jsp"%>
+
+<link href="./resources/css/center_list02.css" rel="stylesheet" /> 
+
 <body>
 	<form action="manager_member_list" method="post">
-		<table border="1" cellpadding="0" cellspacing="0" width="700">
+		<table class="type03" style="position:absolute; top:100px; width:50%;">
 			<tr>
 				<td align="right">
 					<select name="searchCondition">
@@ -24,7 +21,8 @@
 			</tr>
 		</table>
 	</form>
-	<table width="500" cellpadding="0" cellspacing="0" border="1">
+	<table class="type09" style="position:absolute; top:250px;">
+	<thead>
 		<tr>
 			<td>이름(아이디)</td>
 			<td>연락처</td>
@@ -32,10 +30,11 @@
 			<td>등록 날짜</td>
 			
 		</tr>
+		</thead>
 		<c:forEach items="${manager_member_list}" var="dto">
 		<tr>
 			<td>
-				<a href="manager_member_content_view?id=${dto.id}">${dto.name}(${dto.id })</a></td>
+				<a href="manager_member_content_view?id=${dto.id}"style="color: black; font-weight: bold; text-decoration: underline;">${dto.name}(${dto.id })</a></td>
 			<td>${dto.tel_number}</td>
 			<td>${dto.moddate }</td>
 			<td>${dto.regdate}</td>

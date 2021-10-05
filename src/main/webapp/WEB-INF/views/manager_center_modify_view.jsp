@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<%@ include file="header.jsp"%>
 
+<link href="./resources/css/center_view02.css" rel="stylesheet" />
 <script>
 function findAddress(){
 
@@ -69,80 +66,80 @@ function findCoordinate(address) {
 
 </head>
 <body>
-	<table width="500" cellpadding="0" cellspacing="0" border="1">
+	<table class= "type03">
 		<form action="manager_center_modify" method="post" enctype="multipart/form-data">
-		<td> <input type="hidden" name="centerCode" value="${manager_center_modify_view.centerCode}"></td>			
+		<input type="hidden" name="centerCode" value="${manager_center_modify_view.centerCode}">			
 		<tr>
-			<td>업체명</td>
+			<th>업체명</th>
 			<td> <input type="text" name="centerName" value="${manager_center_modify_view.centerName}"></td>			
 		</tr>
 		<tr>
-			<td>상세 설명</td>
+			<th>상세 설명</th>
 			<td> <input type="text" name="detail" value="${manager_center_modify_view.detail}"></td>
 		</tr>
 		<tr>
-			<td>주요 종목</td>
+			<th>주요 종목</th>
 			<td> <input type="text" name="sportsName" value="${manager_center_modify_view.sportsName}"></td>
 		</tr>
 		<tr>
-			<td>연락처</td>
+			<th>연락처</th>
 			<td> <input type="text" name="telNumber" value="${manager_center_modify_view.telNumber}"></td>
 		</tr>
 			<tr>
-				<td> 주소 </td>
+				<th> 주소 </th>
 				<td> <input id="center_addr" name = "address" type="text" value ="${manager_center_modify_view.address }" readonly>  </td>
 			</tr>
 			<tr>
-				<td> 우편번호 </td>
+				<th> 우편번호 </th>
 				<td> <input id="center_post" name = "zipCode" type="text" value ="${manager_center_modify_view.zipCode }" readonly >
 					 <input type="button" onclick="findAddr()" value="우편번호검색"> </td>
 
 			</tr>
 
 			<tr>
-				<td> 위도 </td>
+				<th> 위도 </th>
 				<td> <input id="center_latitude" type="text" name="latitude" size = "50" value="${manager_center_modify_view.latitude }" readonly> </td>
 			</tr>
 			<tr>
-				<td> 경도 </td>
+				<th> 경도 </th>
 				<td> <input id="center_longitude" type="text" name="longitude" size = "50" value="${manager_center_modify_view.longitude }" readonly> </td>
 			</tr>
 			<tr>
 		
 			<tr>
-				<td> 썸네일 이미지명 </td>
+				<th> 썸네일 이미지명 </th>
 				<td> <input type="file" name="thumbnail" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 이미지명 </td>
+				<th> 이미지명 </th>
 				<td> <input type="file" name="image" size = "50"> </td>
 			</tr>
 		<tr>
-			<td>한달 이용 금액(최소)</td>
+			<th>한달 이용 금액(최소)</th>
 			<td> <input type="text" name="usageFeeMin" value="${manager_center_modify_view.usageFeeMin}"></td>
 		</tr>
 		<tr>
-			<td>한달 이용 금액(최대)</td>
+			<th>한달 이용 금액(최대)</th>
 			<td> <input type="text" name="usageFeeMax" value="${manager_center_modify_view.usageFeeMax}"></td>
 		</tr>
 		<tr>
-			<td>등록비</td>
+			<th>등록비</th>
 			<td> <input type="text" name="regFee" value="${manager_center_modify_view.regFee}"></td>
 		</tr>
 		<tr>
-			<td>오픈시간</td>
+			<th>오픈시간</th>
 			<td> <input type="text" name="openDate" value="${manager_center_modify_view.openDate}"></td>
 		</tr>
 		<tr>
-			<td>휴무일</td>
+			<th>휴무일</th>
 			<td> <input type="text" name="dayoff" value="${manager_center_modify_view.dayoff}"></td>
 		</tr>
 		<tr>
-			<td>운영 시간</td>
+			<th>운영 시간</th>
 			<td> <input type="text" name="operatingTime" value="${manager_center_modify_view.operatingTime}"></td>
 		</tr>
 		<tr>
-				<td colspan="2"> <input type="submit" value="수정 완료"> &nbsp;&nbsp; <a href="manager_center_list">목록보기</a> &nbsp;&nbsp; <a href="manager_center_delete?centerCode=${manager_center_modify_view.centerCode}">삭제</a> &nbsp;&nbsp;</td>
+				<td colspan="2"> <input type="submit" value="수정 완료"> &nbsp;&nbsp; <a href="manager_center_list" style="color: black; font-weight:bold; text-decoration: underline;">목록보기</a> &nbsp;&nbsp; <a href="manager_center_delete?centerCode=${manager_center_modify_view.centerCode}" style="color: black; font-weight:bold; text-decoration: underline;">삭제</a> &nbsp;&nbsp;</td>
 		</tr>
 		</form>
 	</table>

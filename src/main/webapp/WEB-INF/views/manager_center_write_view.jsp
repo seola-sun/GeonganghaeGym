@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="header.jsp"%>
+
+<link href="./resources/css/center_list02.css" rel="stylesheet" /> 
 <script>
 function findAddress(){
 
@@ -68,81 +65,81 @@ function findCoordinate(address) {
 </script>
 </head>
 <body>
-	<table width="500" cellpadding="0" cellspacing="0" border="1">
+	<table class="type03" style="position:absolute; left:0px; top:100px;" >
 		<form action="manager_center_write" method="post" enctype="multipart/form-data">
 			<tr>
-				<td> 센터코드 </td>
+				<th> 센터코드 </th>
 				<td> <input type="text" name="centerCode" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 센터명 </td>
+				<th> 센터명 </th>
 				<td> <input type="text" name="centerName" size = "50"> </td>
 			</tr>
 			<tr>    
-				<td> 종목이름 </td>
+				<th> 종목이름 </th>
 				<td> <input type="text" name="sportsName" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 연락처 </td>
+				<th> 연락처 </th>
 				<td> <input type="text" name="telNumber" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 주소 </td>
+				<th> 주소 </th>
 				<td> <input id="center_addr" name = "address" type="text" placeholder="Address" readonly>  </td>
 			</tr>
 			<tr>
-				<td> 우편번호 </td>
+				<th> 우편번호 </th>
 				<td> <input id="center_post" name = "zipCode" type="text" placeholder="Zip Code" readonly >
 					 <input type="button" onclick="findAddress()" value="우편번호검색"> </td>
 
 			</tr>
 
 			<tr>
-				<td> 위도 </td>
+				<th> 위도 </th>
 				<td> <input id="center_latitude" type="text" name="latitude" size = "50" readonly> </td>
 			</tr>
 			<tr>
-				<td> 경도 </td>
+				<th> 경도 </th>
 				<td> <input id="center_longitude" type="text" name="longitude" size = "50" readonly> </td>
 			</tr>
 			<tr>
-				<td> 휴무일 </td>
+				<th> 휴무일 </th>
 				<td> <input type="text" name="dayoff" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 운영시간 </td>
+				<th> 운영시간 </th>
 				<td> <input type="text" name="operatingTime" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 월 최소 이용료 </td>
+				<th> 월 최소 이용료 </th>
 				<td> <input type="text" name="usageFeeMin" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 월 최대 이용료 </td>
+				<th> 월 최대 이용료 </th>
 				<td> <input type="text" name="usageFeeMax" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 등록비 </td>
+				<th> 등록비 </th>
 				<td> <input type="text" name="regFee" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 오픈일 </td>
+				<th> 오픈일 </th>
 				<td> <input type="text" name="openDate" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 썸네일 이미지명 </td>
+				<th> 썸네일 이미지명 </th>
 				<td> <input type="file" name="thumbnail" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 이미지명 </td>
+				<th> 이미지명 </th>
 				<td> <input type="file" name="image" size = "50"> </td>
 			</tr>
 			<tr>
-				<td> 설명 </td>
+				<th> 설명 </th>
 				<td> <textarea name="detail" rows="10" ></textarea> </td>
 			</tr>			
 			<tr>
-				<td colspan="2"> <input type="submit" value="입력"> &nbsp;&nbsp; <a href="manager_center_list">목록보기</a></td>
+				<td colspan="2"> <input type="submit" value="입력"> &nbsp;&nbsp; <a href="manager_center_list" style="color: black; font-weight: bold; text-decoration: underline;">목록보기</a></td>
 			</tr>
 		</form>
 	</table>

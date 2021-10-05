@@ -36,8 +36,8 @@
 					<i class="fas fa-plus fa-3x"></i>
 				</div>
 			</div>
-			<img class="main05" src="./resources/assets/img/main05.png" alt="..." />
+			<img class="main05" src="./resources/assets/img/main05.png" alt="..." style="position:absolute; top:500px;"/>
 		</div>
 	</div>
 </section>
- <%@ include file="footer.jsp"%> 
+
