@@ -211,9 +211,8 @@
 					<br />
 					<div class="submit">
 						<input type="submit" style="width: 120pt; height: 40pt;"
-							value="수정"> &nbsp;&nbsp; <input type="button"
-							id="deleteConfirm" onclick="test()" style="color: black;"
-							value="회원탈퇴" />
+							value="수정"> &nbsp;&nbsp; <input type="button" style="width: 120pt; height: 40pt; color: black;"
+							id="deleteConfirm" onclick="test()" value="회원탈퇴" />
 
 					</div>
 				</form>
