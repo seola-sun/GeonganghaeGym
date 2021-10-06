@@ -18,9 +18,15 @@
 				dataType : "JSON",
 			},
 			columns : [ {
-				data : "centerName"
+				data : "centerName",
+		        render : function(data, type, row, meta){
+		                if(type === 'display'){
+		                      data = '<a href=center_view?centerCode='+ row.centerCode +'>'+ data + '</a>';
+		                } 
+		                return data;
+		             }   
 			}, {
-				data : "sportsCode"
+				data : "sportsName"
 			}, {
 				data : "usage_fee_min"
 			}, {

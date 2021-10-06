@@ -9,6 +9,7 @@ public class InterestDto {
 	private String centerCode;
 	private String centerName;
 	private String sportsCode;
+	private String sportsName;
 	private Date regDate;
 	private int interest_cnt;
 	private int recommend_cnt;
@@ -18,7 +19,7 @@ public class InterestDto {
 	public InterestDto() {
 	}
 
-	public InterestDto(String seq, String id, String centerCode, String centerName, String sportsCode, Date regDate,
+	public InterestDto(String seq, String id, String centerCode, String centerName, String sportsCode, String sportsName, Date regDate,
 			int interest_cnt, int recommend_cnt, int usage_fee_min) {
 		super();
 		this.seq = seq;
@@ -26,6 +27,7 @@ public class InterestDto {
 		this.centerCode = centerCode;
 		this.centerName = centerName;
 		this.sportsCode = sportsCode;
+		this.sportsName = sportsName;
 		this.regDate = regDate;
 		this.interest_cnt = interest_cnt;
 		this.recommend_cnt = recommend_cnt;
@@ -102,6 +104,14 @@ public class InterestDto {
 
 	public void setSportsCode(String sportsCode) {
 		this.sportsCode = sportsCode;
+	}
+	
+	public String getSportsName() {
+		return sportsName;
+	}
+
+	public void setSportsName(String sportsName) {
+		this.sportsName = sportsName;
 	}
 
 }

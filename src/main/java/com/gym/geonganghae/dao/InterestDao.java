@@ -34,10 +34,10 @@ public class InterestDao {
 	}
 
 	public ArrayList<InterestDto> list(final String loginId) {
-
-		String query = "SELECT c.CENTER_NAME, " + "c.SPORTS_CODE, " + "i.center_Code, " + "c.usage_fee_min, "
-				+ "c.interest_cnt, " + "c.recommend_cnt, " + "i.regdate "+ "FROM INTEREST i, CENTER c "
-				+ "WHERE i.center_Code = c.center_Code " + "AND i.id = '" + loginId + "'";
+		
+		String query = "SELECT c.CENTER_NAME, " + "c.SPORTS_CODE, " + "i.center_Code, " + "s.SPORTS_NAME, "+ "c.usage_fee_min, "
+	            + "c.interest_cnt, " + "c.recommend_cnt, " + "i.regdate "+ "FROM INTEREST i, CENTER c, SPORTS s "
+	            + "WHERE i.center_Code = c.center_Code AND c.SPORTS_CODE = s.SPORTS_CODE " + "AND i.id = '" + loginId + "'";
 
 		return (ArrayList<InterestDto>) template.query(query,
 				new BeanPropertyRowMapper<InterestDto>(InterestDto.class));
