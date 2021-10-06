@@ -1,9 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ include file="header.jsp"%>
 
-<!-- link href="./resources/css/center_list.css" rel="stylesheet" />
+<link href="./resources/css/center_list.css" rel="stylesheet" />
 <link href="./resources/css/center_list02.css" rel="stylesheet" />
- -->
+
 <!-- DataTables 스크립트 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -40,7 +40,8 @@
 			}, {
 				data : "recommendCnt"
 			}
-			]
+			],
+			order : [[ 4, "desc" ]]
 		});
 	});
 </script>
@@ -69,20 +70,7 @@
 						<td>관심등록수</td>
 						<td>추천수</td>
 					</tr>
-				</thead><%-- 
-				<tbody>
-				<c:forEach items="${list}" var="dto">
-					<tr>
-						<td><a href="center_view?centerCode=${dto.centerCode}"
-							style="color: black; font-weight: bold; text-decoration: underline;">${dto.centerName}</a></td>
-						<td>${dto.sportsName}</td>
-						<td>${dto.usageFeeMin}</td>
-						<td>${dto.usageFeeMax}</td>
-						<td>${dto.interestCnt}</td>
-						<td>${dto.recommendCnt}</td>
-					</tr>
-				</c:forEach>
-				</tbody> --%>
+				</thead>
 			</table>
 		</div>
 	</div>
