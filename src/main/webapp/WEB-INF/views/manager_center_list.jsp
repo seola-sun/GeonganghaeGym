@@ -110,7 +110,7 @@
 			</tr>
 			<tr>
 				<th>위치</th>
-				<td align="right" style="width:25%;">
+				<td align="right" style="padding-top:25px;">
 					<select id="sidoKeyword" name="sidoKeyword" onchange="categoryChange(this)">
 						<option value="전체">전체</option>
 						<option value="서울">서울특별시</option>
