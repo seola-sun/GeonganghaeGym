@@ -45,7 +45,7 @@ public class ManagerCenterListCommand implements Command {
 //			System.out.println(sportsNameKeyword[i]);
 //		}
 		ManagerCenterDAO dao = new ManagerCenterDAO();
-		ArrayList<ManagerCenterDTO> dtos = dao.list(centerNameKeyword, sportsNameKeyword, sidoKeyword, sigunguKeyword, roKeyword, usageMinFeeKeyword, usageMaxFeeKeyword);
+		ArrayList<ManagerCenterDTO> dtos = dao.list(centerNameKeyword, sportsNameKeyword, sidoKeyword, sigunguKeyword, usageMinFeeKeyword, usageMaxFeeKeyword);
 		model.addAttribute("manager_center_list", dtos);
 		
 	}

@@ -92,7 +92,7 @@ function findCoordinate(address) {
 			<tr>
 				<th> 우편번호 </th>
 				<td> <input id="center_post" name = "zipCode" type="text" value ="${manager_center_modify_view.zipCode }" readonly >
-					 <input type="button" onclick="findAddr()" value="우편번호검색"> </td>
+					 <input type="button" onclick="findAddress()" value="우편번호검색"> </td>
 
 			</tr>
 
@@ -108,11 +108,11 @@ function findCoordinate(address) {
 		
 			<tr>
 				<th> 썸네일 이미지명 </th>
-				<td> <input type="file" name="thumbnail" size = "50"> </td>
+				<td> ${manager_center_modify_view.thumbnail}<input type="file" name="thumbnail" size = "50"> </td>
 			</tr>
 			<tr>
 				<th> 이미지명 </th>
-				<td> <input type="file" name="image" size = "50"> </td>
+				<td> ${manager_center_modify_view.image}<input type="file" name="image" size = "50"> </td>
 			</tr>
 		<tr>
 			<th>한달 이용 금액(최소)</th>

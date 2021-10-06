@@ -26,12 +26,12 @@ public class ManagerCenterDAO {
 	}
 	
 	public ArrayList<ManagerCenterDTO> list(String centerNameKeyword, String[] sportsNameKeyword, String sidoKeyword, String sigunguKeyword, 
-			String roKeyword, String usageMinFeeKeyword, String usageMaxFeeKeyword){
+		  String usageMinFeeKeyword, String usageMaxFeeKeyword){
 		String find_centerName = "";
 		String find_sportsName = "";
 		String find_usageMinFee = "";
 		String find_usageMaxFee = "";
-
+		String find_centeraddress = "";
 		if(sportsNameKeyword!=null)
 		{
 			find_sportsName = "and s.SPORTS_NAME IN (";
@@ -73,6 +73,21 @@ public class ManagerCenterDAO {
 			find_usageMinFee = "and c.USAGE_FEE_MIN between " + minfee + " and "+ maxfee +" ";
 			find_usageMaxFee = "and c.USAGE_FEE_MAX between " + minfee + " and "+ maxfee +" ";
 		}
+		if(sidoKeyword!=null && sigunguKeyword!=null)
+		{
+			if(!sidoKeyword.equals("전체") && !sigunguKeyword.equals("전체"))
+			{
+				find_centeraddress = "and c.ADDRESS like '%" + sidoKeyword+" "+sigunguKeyword+"%' ";
+			}
+			if(!sidoKeyword.equals("전체") && sigunguKeyword.equals("전체"))
+			{
+			
+				find_centeraddress = "and c.ADDRESS like '%" + sidoKeyword+"%' ";
+			}
+			//find_centeraddress = "and c.ADDRESS like '%" + sidoKeyword+" "+sigunguKeyword+"%' ";
+		}
+
+		
 		String query = "SELECT c.CENTER_CODE, "
 							+ "c.CENTER_NAME, "
 							+ "s.SPORTS_NAME, "
@@ -81,7 +96,7 @@ public class ManagerCenterDAO {
 							+ "c.INTEREST_CNT, "
 							+ "c.RECOMMEND_CNT "
 					 + "FROM CENTER c, SPORTS s "
-					 + "WHERE c.SPORTS_CODE = s.SPORTS_CODE " + find_centerName + find_sportsName + find_usageMinFee + find_usageMaxFee
+					 + "WHERE c.SPORTS_CODE = s.SPORTS_CODE " + find_centerName + find_sportsName + find_usageMinFee + find_usageMaxFee + find_centeraddress
 					 + "ORDER BY REGDATE";
 		return (ArrayList<ManagerCenterDTO>) template.query(query, new BeanPropertyRowMapper<ManagerCenterDTO>(ManagerCenterDTO.class));
 	}
