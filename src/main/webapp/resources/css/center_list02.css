@@ -63,20 +63,17 @@ table.type09 td {
 
 .myButton {
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-	background-color:#ffffff;
-	border-radius:6px;
-	border:1px solid #030303;
+	border:1px solid #c0c0c0;
 	display:inline-block;
 	cursor:pointer;
 	color:black;
 	font-size:15px;
-	font-weight:bold;
-	padding:13px 31px;
+	padding:13px 10px;
 	text-decoration:none;
 
 }
 .myButton:hover {
+	border:1px solid #000000;
 	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
 	background-color:#f6f6f6;
 }

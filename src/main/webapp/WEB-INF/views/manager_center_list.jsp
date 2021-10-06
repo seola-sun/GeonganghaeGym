@@ -73,14 +73,14 @@
 		}
 	%>
 	<form action="manager_center_list" method="post">
-		<table class="type03" style="position:absolute; left:0px; top:100px;" >
+		<table class="type03" style="position:absolute; left:-5px; top:100px;" >
 			<tr>
 				<th>센터명</th>
 				<td align="right">
 					<input name="centerNameKeyword" type="text" value="<%=centerNameKeyword%>"/>
 				</td>
 				<th>종목</th>
-				<td colspan="3">
+				<td colspan="4">
 				<c:set var="open" value="" />
 					<c:if test="${health !=nullq}">
 						<c:set var="health" value="checked" />
@@ -138,7 +138,9 @@
 				<th>금액</th>
 				<td>최소금액<input type="text" name="usageMinFeeKeyword" value="<%=usageMinFeeKeyword%>"></td>
 				<td>최대금액<input type="text" name="usageMaxFeeKeyword" value="<%=usageMaxFeeKeyword%>"></td>
-				<td><input type="submit" value="검색" /></td>
+				<td><input type="submit" value="검색" style="margin-top:10%;"/></td>
+				<td><button type="button" class="myButton"
+			onclick="location.href='manager_center_write_view' ">센터 등록하기</button></td>
 			</tr>
 		</table>
 	</form>
@@ -164,10 +166,6 @@
 				<td>${dto.recommendCnt}</td>
 			</tr>
 		</c:forEach>
-		<tr>
-			<button type="button" class="myButton" style="position:absolute; left:45%; top:80%;"
-			onclick="location.href='manager_center_write_view' ">센터 등록하기</button>
-		</tr>
 	</table>
 </body>
 <script type="text/javascript">
