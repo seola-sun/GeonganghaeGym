@@ -58,65 +58,6 @@ ul li {
 </style>
 </head>
 <body id="page-top">
-	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg bg-secondary  fixed-top"
-		id="mainNav">
-		<div class="container">
-			<a class="navbar-brand" href="#page-top">건강해Gym</a>
-
-			<button
-				class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
-				type="button" data-bs-toggle="collapse"
-				data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				Menu <i class="fas fa-bars"></i>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#main"> HOME
-					</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="center_list">
-							센터찾기 </a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="openstore">
-							입점문의 </a></li>
-					<c:if test="${not empty sessionScope.userName}">
-						<li class="nav-item mx-0 mx-lg-1"><a
-							class="nav-link py-3 px-0 px-lg-3 rounded" href="myinfo_view">
-								마이페이지 </a>
-							<ul id="sub-menu">
-								<li><a href="myinfo_view" aria-label="subemnu">내 정보</a></li>
-								<li><a href="interest_list" aria-label="subemnu">관심목록</a></li>
-							</ul></li>
-					</c:if>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">
-							고객센터 </a>
-						<ul id="sub-menu">
-							<li><a href="#" aria-label="subemnu">공지사항</a></li>
-							<li><a href="#" aria-label="subemnu">QnA</a></li>
-						</ul></li>
-				</ul>
-			</div>
-			<c:choose>
-				<c:when test="${not empty sessionScope.userName}">
-					<span style="font-family: nanumgothic; color: white;">
-						${userName}님 </span>
-					<a href="logout">[Logout]</a>
-				</c:when>
-				<c:otherwise>
-					<div>
-						<a href="login">로그인</a> <a href="write_view">회원가입</a>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</nav>
-
-	
-	
 	<section class="page-section portfolio" id="portfolio">
 	<div class="chart-container">
 			<div class="row">
