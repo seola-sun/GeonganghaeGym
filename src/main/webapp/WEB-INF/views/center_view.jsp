@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ include file="header.jsp"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -159,8 +160,8 @@
 								<td id="centerName">${center_view.centerName}</td>
 							</tr>
 							<tr>
-								<th>상세 설명</th>
-								<td>(이미지 등록 예정)${center_view.detail}</td>
+								<th>썸네일</th>
+								<td><img src="<spring:url value='/filepath/${center_view.centerCode}_${center_view.thumbnail}'/>"/></td>
 							</tr>
 							<tr>
 								<th>주요 종목</th>

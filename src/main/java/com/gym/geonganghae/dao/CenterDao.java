@@ -46,7 +46,15 @@ public class CenterDao {
 	// by설아, 센터 코드로 센터의 상세 정보를 조회하는 메소드
 	public CenterDto centerView(String centerCode) {
 		// by설아, 센터 코드에 해당하는 센터 한 건을 검색한다.
-		String query = "SELECT * FROM CENTER WHERE CENTER_CODE = '" + centerCode + "'";
+		// String query = "SELECT * FROM CENTER WHERE CENTER_CODE = '" + centerCode + "'";
+		
+		String query = "SELECT c.CENTER_CODE, c.CENTER_NAME, c.SPORTS_CODE, s.SPORTS_NAME, c.TEL_NUMBER, "
+				+ "c.ZIPCODE, c.ADDRESS, c.LATITUDE, c.LONGITUDE, c.DAYOFF, "
+				+ "c.OPERATING_TIME, c.USAGE_FEE_MIN, c.USAGE_FEE_MAX, c.REGFEE, c.OPEN_DATE, "
+				+ "c.THUMBNAIL, c.IMAGE, c.DETAIL, c.INTEREST_CNT, c.RECOMMEND_CNT, c.REGDATE "
+				+ "FROM CENTER c, SPORTS s "
+				+ "WHERE c.SPORTS_CODE = s.SPORTS_CODE "
+				+ "AND c.CENTER_CODE = '" + centerCode +"'";
 
 		// by설아, JdbcTemplate의 queryForObject()메소드로
 		// 단 하나의 CenterDto객체를 검색한다.
