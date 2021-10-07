@@ -5,15 +5,27 @@
 <link href="./resources/css/center_list02.css" rel="stylesheet" /> 
 
 <body>
+	<% 
+		String searchKeyword = request.getParameter("searchKeyword");
+		String searchCondition = request.getParameter("searchCondition");
+		if(searchKeyword == null)
+		{
+			searchKeyword = "";
+		}
+		if(searchCondition == null)
+		{
+			searchCondition = "name";
+		}
+	%>
 	<form action="manager_member_list" method="post">
 		<table class="type03" style="position:absolute; top:100px; width:50%;">
 			<tr>
 				<td align="right">
-					<select name="searchCondition">
+					<select id="searchCondition" name="searchCondition">
 					<c:forEach items="${conditionMap }" var="option">
 						<option value="${option.value }">${option.key  }
 					</c:forEach>
-					<input name="searchKeyword" type="text"/>
+					<input name="searchKeyword" type="text" value=<%=searchKeyword %>>
 					<input type="submit" value="검색"/>
 					
 					</select>
@@ -45,4 +57,7 @@
 	</table>
 	
 </body>
+<script>
+	document.getElementById('searchCondition').value = "<%=searchCondition %>";
+</script>
 </html>

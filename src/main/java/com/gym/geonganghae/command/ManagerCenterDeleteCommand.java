@@ -18,7 +18,6 @@ public class ManagerCenterDeleteCommand implements Command {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
 		String centerCode = request.getParameter("centerCode");
-		System.out.println("Command에서의 centerCode : "+centerCode);
 		ManagerCenterDAO dao = new ManagerCenterDAO();
 		dao.centerDelete(centerCode);
 		

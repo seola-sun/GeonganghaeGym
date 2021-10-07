@@ -68,76 +68,64 @@ function findCoordinate(address) {
 	<table class="type03" style="position:absolute; left:30%; top:100px;" >
 		<form action="manager_center_write" method="post" enctype="multipart/form-data">
 			<tr>
-				<th> 센터코드 </th>
-				<td> <input type="text" name="centerCode" size = "50"> </td>
+				<th>센터코드</th>
+				<td><input type="text" name="centerCode" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 센터명 </th>
-				<td> <input type="text" name="centerName" size = "50"> </td>
+				<th>센터명</th>
+				<td><input type="text" name="centerName" size = "50"></td>
 			</tr>
 			<tr>    
-				<th> 종목이름 </th>
-				<td> <input type="text" name="sportsName" size = "50"> </td>
+				<th>주요 종목</th>
+				<td><input type="text" name="sportsName" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 연락처 </th>
-				<td> <input type="text" name="telNumber" size = "50"> </td>
+				<th>연락처</th>
+				<td><input type="text" name="telNumber" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 주소 </th>
-				<td> <input id="center_addr" name = "address" type="text" placeholder="Address" readonly>  </td>
+				<th>주소</th>
+				<td><input id="center_addr" name = "address" type="text" placeholder="Address" readonly></td>
 			</tr>
 			<tr>
-				<th> 우편번호 </th>
-				<td> <input id="center_post" name = "zipCode" type="text" placeholder="Zip Code" readonly >
-					 <input type="button" onclick="findAddress()" value="우편번호검색"> </td>
-
+				<th>우편번호</th>
+				<td><input id="center_post" name = "zipCode" type="text" placeholder="Zip Code" readonly >
+					<input type="button" onclick="findAddress()" value="우편번호검색"></td>
 			</tr>
-
+			<input id="center_latitude" type="hidden" name="latitude" size = "50">
+			<input id="center_longitude" type="hidden" name="longitude" size = "50">
 			<tr>
-				<th> 위도 </th>
-				<td> <input id="center_latitude" type="text" name="latitude" size = "50" readonly> </td>
-			</tr>
-			<tr>
-				<th> 경도 </th>
-				<td> <input id="center_longitude" type="text" name="longitude" size = "50" readonly> </td>
+				<th>썸네일 이미지</th>
+				<td><input type="file" name="thumbnail" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 휴무일 </th>
-				<td> <input type="text" name="dayoff" size = "50"> </td>
+				<th>센터 이미지</th>
+				<td><input type="file" name="image" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 운영시간 </th>
-				<td> <input type="text" name="operatingTime" size = "50"> </td>
+				<th>운영 시간</th>
+				<td><input type="text" name="operatingTime" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 월 최소 이용료 </th>
-				<td> <input type="text" name="usageFeeMin" size = "50"> </td>
+				<th>휴무일</th>
+				<td><input type="text" name="dayoff" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 월 최대 이용료 </th>
-				<td> <input type="text" name="usageFeeMax" size = "50"> </td>
+				<th>등록비</th>
+				<td><input type="text" name="regFee" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 등록비 </th>
-				<td> <input type="text" name="regFee" size = "50"> </td>
+				<th>한달 이용 금액(최소)</th>
+				<td><input type="text" name="usageFeeMin" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 오픈일 </th>
-				<td> <input type="text" name="openDate" size = "50"> </td>
+				<th>한달 이용 금액(최대)</th>
+				<td><input type="text" name="usageFeeMax" size = "50"></td>
 			</tr>
 			<tr>
-				<th> 썸네일 이미지명 </th>
-				<td> <input type="file" name="thumbnail" size = "50"> </td>
+				<th>설명</th>
+				<td><textarea name="detail" rows="10" ></textarea></td>
 			</tr>
-			<tr>
-				<th> 이미지명 </th>
-				<td> <input type="file" name="image" size = "50"> </td>
-			</tr>
-			<tr>
-				<th> 설명 </th>
-				<td> <textarea name="detail" rows="10" ></textarea> </td>
-			</tr>			
 			<tr>
 				<td colspan="2"> <input type="submit" value="입력"> &nbsp;&nbsp; <a href="manager_center_list" style="color: black; font-weight: bold; text-decoration: underline;">목록보기</a></td>
 			</tr>

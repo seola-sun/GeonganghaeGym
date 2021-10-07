@@ -52,14 +52,6 @@ public class ManagerCenterDAO {
 		{
 			if(centerNameKeyword!="")
 				find_centerName = "and c.CENTER_NAME like '%" + centerNameKeyword + "%' ";
-//			if(usageMinFeeKeyword!="")
-//			{
-//				find_usageMinFee = "and c.USAGE_FEE_MIN = "+usageMinFeeKeyword+" ";
-//			}
-//			if(usageMaxFeeKeyword!="")
-//			{
-//				find_usageMaxFee = "and c.USAGE_FEE_MAX = "+usageMaxFeeKeyword+" ";
-//			}
 			String minfee="0";
 			String maxfee="99999999999";
 			if(usageMinFeeKeyword!="")
@@ -84,10 +76,7 @@ public class ManagerCenterDAO {
 			
 				find_centeraddress = "and c.ADDRESS like '%" + sidoKeyword+"%' ";
 			}
-			//find_centeraddress = "and c.ADDRESS like '%" + sidoKeyword+" "+sigunguKeyword+"%' ";
 		}
-
-		
 		String query = "SELECT c.CENTER_CODE, "
 							+ "c.CENTER_NAME, "
 							+ "s.SPORTS_NAME, "
@@ -102,8 +91,6 @@ public class ManagerCenterDAO {
 	}
 	
 	public ManagerCenterDTO centerView(String centerCode) {
-		System.out.println("dtocenterview");
-		System.out.println(centerCode);
 		String query = "SELECT c.CENTER_CODE, c.CENTER_NAME, c.SPORTS_CODE, s.SPORTS_NAME, c.TEL_NUMBER, "
 				+ "c.ZIPCODE, c.ADDRESS, c.LATITUDE, c.LONGITUDE, c.DAYOFF, "
 				+ "c.OPERATING_TIME, c.USAGE_FEE_MIN, c.USAGE_FEE_MAX, c.REGFEE, c.OPEN_DATE, "
@@ -122,7 +109,6 @@ public class ManagerCenterDAO {
 							+ "c.image, c.detail from center c, sports s "
 							+ "WHERE c.SPORTS_CODE = s.SPORTS_CODE "
 							+ "and center_code = '" + centerCode + "'";
-//		return template.queryForObject(query, ParameterizedBeanPropertyRowMapper.newInstance(BDto.class));
 		return template.queryForObject(query, new BeanPropertyRowMapper<ManagerCenterDTO>(ManagerCenterDTO.class));
 		
 	}
@@ -173,15 +159,11 @@ public class ManagerCenterDAO {
 			final String thumbnail, final String image, final int usageFeeMin, final int usageFeeMax, 
 			final int regFee, final String openDate, final String dayoff, final String operatingTime, final String centerCode) {
 		this.template.update(new PreparedStatementCreator() {
-			
-			
-			
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con)
 					throws SQLException {
 				String updatethumbnail = "";
 				String updateimage = "";
-				System.out.println("thumnail : "+thumbnail);
 				if(!thumbnail.equals("")&&!image.equals(""))
 				{
 					updatethumbnail = ", c.thumbnail = ? ";
@@ -201,9 +183,6 @@ public class ManagerCenterDAO {
 						+ "c.tel_number = ?, c.address = ?, c.zipcode = ?, c.latitude = ?, c.longitude = ?, "
 						+ "c.usage_fee_min = ?, c.usage_fee_max = ?, c.regfee = ?, c.open_date = ?, c.dayoff = ?, c.operating_time = ? " + updatethumbnail + updateimage 
 						+ "where exists (select 1 from sports s where s.sports_name = '"+ sportsName + "' and c.center_code = '" + centerCode + "')";
-				System.out.println(sportsName);
-				System.out.println(centerCode);
-				System.out.println(query);
 				PreparedStatement pstmt = con.prepareStatement(query);
 				pstmt.setString(1, centerName);
 				pstmt.setString(2, detail);
@@ -235,12 +214,10 @@ public class ManagerCenterDAO {
 			}
 		});
 	}
-	
 
 	public void centerDelete(final String centerCode) {
 		// TODO Auto-generated method stub
 		String query = "delete from center where center_code = ?";
-		System.out.println("cetnerDelete에서의 centerCode : "+centerCode);
 		this.template.update(query, new PreparedStatementSetter() {
 
 			@Override

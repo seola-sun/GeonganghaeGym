@@ -234,8 +234,6 @@ window.onload = function(){
 			opt.innerHTML = d[x];
 			if(opt.value == "<%=sigunguKeyword %>")
 			{
-				console.log(opt.value);
-				console.log("<%=sigunguKeyword %>");
 				opt.setAttribute ("selected", true);
 			}
 			target.appendChild(opt);

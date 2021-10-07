@@ -20,9 +20,6 @@ public class ManagerMemberListCommand implements Command {
 		
 		String searchCondition = request.getParameter("searchCondition");
 		String searchKeyword = request.getParameter("searchKeyword");
-
-		System.out.println(searchCondition);
-		System.out.println(searchKeyword);
 		
 		ManagerMemberDao dao = new ManagerMemberDao();
 		ArrayList<ManagerMemberDto> dtos = dao.list(searchCondition, searchKeyword);

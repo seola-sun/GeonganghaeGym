@@ -9,19 +9,15 @@
 		<form action="manager_center_modify_view?centerCode=${manager_center_content_view.centerCode}" method="post">
 		<input type="hidden" name="centerCode" value="${ manager_center_content_view.centerCode}">
 		<tr>
-			<th>업체명</th>
+			<th>센터명</th>
 			<td>${manager_center_content_view.centerName}</td>
-		</tr>
-		<tr>
-			<th>상세 설명</th>
-			<td>(이미지 등록 예정)${manager_center_content_view.detail}</td>
 		</tr>
 		<tr>
 			<th>주요 종목</th>
 			<td>${manager_center_content_view.sportsName}</td>
 		</tr>
 		<tr>
-			<th>전화 번호</th>
+			<th>연락처</th>
 			<td>${manager_center_content_view.telNumber}</td>
 		</tr>
 		<tr>
@@ -32,41 +28,39 @@
 			<th>우편번호</th>
 			<td>${manager_center_content_view.zipCode}</td>
 		</tr>
+		<input type="hidden" name="latitude" value="${ manager_center_content_view.latitude}">
+		<input type="hidden" name="longitude" value="${ manager_center_content_view.longitude}">
 		<tr>
-			<th>위도</th>
-			<td>${manager_center_content_view.latitude}</td>
-		</tr>
-		<tr>
-			<th>경도</th>
-			<td>${manager_center_content_view.longitude}</td>
-		</tr>
-		<tr>
-			<th>썸네일</th>
+			<th>썸네일 이미지</th>
 			<td>${manager_center_content_view.thumbnail}</td>
 		</tr>
 		<tr>
-			<th>이미지</th>
+			<th>센터 이미지</th>
 			<td>${manager_center_content_view.image}</td>
 		</tr>
 		<tr>
-			<th>한달 이용 금액(최소)</th>
-			<td>${manager_center_content_view.usageFeeMin}</td>
-		</tr>
-		<tr>
-			<th>한달 이용 금액(최대)</th>
-			<td>${manager_center_content_view.usageFeeMax}</td>
-		</tr>
-		<tr>
-			<th>등록비</th>
-			<td>${manager_center_content_view.regFee}</td>
+			<th>운영 시간</th>
+			<td>${manager_center_content_view.operatingTime}</td>
 		</tr>
 		<tr>
 			<th>휴무일</th>
 			<td>${manager_center_content_view.dayoff}</td>
 		</tr>
 		<tr>
-			<th>운영 시간</th>
-			<td>${manager_center_content_view.operatingTime}</td>
+			<th>등록비</th>
+			<td>${manager_center_content_view.regFee}</td>
+		</tr>
+		<tr>
+			<th>월 최소 이용료</th>
+			<td>${manager_center_content_view.usageFeeMin}</td>
+		</tr>
+		<tr>
+			<th>월 최대 이용료</th>
+			<td>${manager_center_content_view.usageFeeMax}</td>
+		</tr>
+		<tr>
+			<th>설명</th>
+			<td>${manager_center_content_view.detail}</td>
 		</tr>
 		<tr>
 			<th>관심등록수</th>

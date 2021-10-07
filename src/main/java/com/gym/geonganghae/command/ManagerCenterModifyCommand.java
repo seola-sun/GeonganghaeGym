@@ -30,9 +30,6 @@ public class ManagerCenterModifyCommand implements Command {
 		String thumbnail = thumnail_file.getOriginalFilename(); // 원본 파일 명
 		long thumbnail_Size = thumnail_file.getSize(); // 파일 사이즈
 
-		System.out.println("originFileName : " + thumbnail);
-		System.out.println("fileSize : " + thumbnail_Size);
-
 		String save_thumnail_name = path + centerCode + "_" + thumbnail;
 
 		try {
@@ -46,9 +43,6 @@ public class ManagerCenterModifyCommand implements Command {
 		}
 		String image = image_file.getOriginalFilename(); // 원본 파일 명
 		long image_Size = image_file.getSize(); // 파일 사이즈
-
-		System.out.println("originFileName : " + thumbnail);
-		System.out.println("fileSize : " + thumbnail_Size);
 
 		String save_image_name = path + centerCode + "_" + image;
 

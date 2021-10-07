@@ -39,21 +39,17 @@ public class ManagerMemberDao {
 		
 	}
 	
-//	@SuppressWarnings("deprecation")
 	public ManagerMemberDto contentView(String strID) {
 		// TODO Auto-generated method stub
 		
 		String query = "select * from member where id = '" + strID + "'";
-//		return template.queryForObject(query, ParameterizedBeanPropertyRowMapper.newInstance(BDto.class));
 		return template.queryForObject(query, new BeanPropertyRowMapper<ManagerMemberDto>(ManagerMemberDto.class));
-		
 	}
 	
 	public ManagerMemberDto modifyView(String strID) {
 		// TODO Auto-generated method stub
 		
 		String query = "select * from member where id = '" + strID + "'";
-//		return template.queryForObject(query, ParameterizedBeanPropertyRowMapper.newInstance(BDto.class));
 		return template.queryForObject(query, new BeanPropertyRowMapper<ManagerMemberDto>(ManagerMemberDto.class));
 		
 	}

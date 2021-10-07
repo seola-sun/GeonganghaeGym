@@ -70,12 +70,8 @@ function findCoordinate(address) {
 		<form action="manager_center_modify" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="centerCode" value="${manager_center_modify_view.centerCode}">			
 		<tr>
-			<th>업체명</th>
+			<th>센터명</th>
 			<td> <input type="text" name="centerName" value="${manager_center_modify_view.centerName}"></td>			
-		</tr>
-		<tr>
-			<th>상세 설명</th>
-			<td> <input type="text" name="detail" value="${manager_center_modify_view.detail}"></td>
 		</tr>
 		<tr>
 			<th>주요 종목</th>
@@ -85,35 +81,37 @@ function findCoordinate(address) {
 			<th>연락처</th>
 			<td> <input type="text" name="telNumber" value="${manager_center_modify_view.telNumber}"></td>
 		</tr>
-			<tr>
-				<th> 주소 </th>
-				<td> <input id="center_addr" name = "address" type="text" value ="${manager_center_modify_view.address }" readonly>  </td>
-			</tr>
-			<tr>
-				<th> 우편번호 </th>
-				<td> <input id="center_post" name = "zipCode" type="text" value ="${manager_center_modify_view.zipCode }" readonly >
-					 <input type="button" onclick="findAddress()" value="우편번호검색"> </td>
-
-			</tr>
-
-			<tr>
-				<th> 위도 </th>
-				<td> <input id="center_latitude" type="text" name="latitude" size = "50" value="${manager_center_modify_view.latitude }" readonly> </td>
-			</tr>
-			<tr>
-				<th> 경도 </th>
-				<td> <input id="center_longitude" type="text" name="longitude" size = "50" value="${manager_center_modify_view.longitude }" readonly> </td>
-			</tr>
-			<tr>
-		
-			<tr>
-				<th> 썸네일 이미지명 </th>
-				<td> ${manager_center_modify_view.thumbnail}<input type="file" name="thumbnail" size = "50"> </td>
-			</tr>
-			<tr>
-				<th> 이미지명 </th>
-				<td> ${manager_center_modify_view.image}<input type="file" name="image" size = "50"> </td>
-			</tr>
+		<tr>
+			<th>주소</th>
+			<td><input id="center_addr" name = "address" type="text" value ="${manager_center_modify_view.address }" readonly>  </td>
+		</tr>
+		<tr>
+			<th>우편번호</th>
+			<td><input id="center_post" name = "zipCode" type="text" value ="${manager_center_modify_view.zipCode }" readonly >
+				<input type="button" onclick="findAddress()" value="우편번호검색"> </td>
+		</tr>		
+		<input id="center_latitude" type="hidden" name="latitude" size = "50" value="${manager_center_modify_view.latitude }" > 
+		<input id="center_longitude" type="hidden" name="longitude" size = "50" value="${manager_center_modify_view.longitude }" > 
+		<tr>
+			<th>썸네일 이미지 </th>
+			<td>${manager_center_modify_view.thumbnail}<input type="file" name="thumbnail" size = "50"></td>
+		</tr>
+		<tr>
+			<th>센터 이미지</th>
+			<td>${manager_center_modify_view.image}<input type="file" name="image" size = "50"></td>
+		</tr>
+		<tr>
+			<th>운영 시간</th>
+			<td><input type="text" name="operatingTime" value="${manager_center_modify_view.operatingTime}"></td>
+		</tr>
+		<tr>
+			<th>휴무일</th>
+			<td> <input type="text" name="dayoff" value="${manager_center_modify_view.dayoff}"></td>
+		</tr>
+		<tr>
+			<th>등록비</th>
+			<td> <input type="text" name="regFee" value="${manager_center_modify_view.regFee}"></td>
+		</tr>
 		<tr>
 			<th>한달 이용 금액(최소)</th>
 			<td> <input type="text" name="usageFeeMin" value="${manager_center_modify_view.usageFeeMin}"></td>
@@ -121,22 +119,10 @@ function findCoordinate(address) {
 		<tr>
 			<th>한달 이용 금액(최대)</th>
 			<td> <input type="text" name="usageFeeMax" value="${manager_center_modify_view.usageFeeMax}"></td>
-		</tr>
+		</tr>	
 		<tr>
-			<th>등록비</th>
-			<td> <input type="text" name="regFee" value="${manager_center_modify_view.regFee}"></td>
-		</tr>
-		<tr>
-			<th>오픈시간</th>
-			<td> <input type="text" name="openDate" value="${manager_center_modify_view.openDate}"></td>
-		</tr>
-		<tr>
-			<th>휴무일</th>
-			<td> <input type="text" name="dayoff" value="${manager_center_modify_view.dayoff}"></td>
-		</tr>
-		<tr>
-			<th>운영 시간</th>
-			<td> <input type="text" name="operatingTime" value="${manager_center_modify_view.operatingTime}"></td>
+			<th>설명</th>
+			<td><input type="text" name="detail" value="${manager_center_modify_view.detail}"></td>
 		</tr>
 		<tr>
 				<td colspan="2"> <input type="submit" value="수정 완료"> &nbsp;&nbsp; <a href="manager_center_list" style="color: black; font-weight:bold; text-decoration: underline;">목록보기</a> &nbsp;&nbsp; <a href="manager_center_delete?centerCode=${manager_center_modify_view.centerCode}" style="color: black; font-weight:bold; text-decoration: underline;">삭제</a> &nbsp;&nbsp;</td>

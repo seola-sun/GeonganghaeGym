@@ -25,25 +25,7 @@ public class ManagerCenterListCommand implements Command {
 		String roKeyword = request.getParameter("roKeyword");
 		String usageMinFeeKeyword = request.getParameter("usageMinFeeKeyword");
 		String usageMaxFeeKeyword = request.getParameter("usageMaxFeeKeyword");
-		
-		
-		System.out.println(centerNameKeyword);
-		if(sportsNameKeyword!=null)
-		{
-			for(int i=0; i<sportsNameKeyword.length; i++)
-			{
-				System.out.println(sportsNameKeyword[i]);
-			}
-		}
-		System.out.println(sidoKeyword);
-		System.out.println(sigunguKeyword);
-		System.out.println(roKeyword);
-		System.out.println(usageMinFeeKeyword);
-		System.out.println(usageMaxFeeKeyword);
-//		for(int i=0; i<1; i++)
-//		{
-//			System.out.println(sportsNameKeyword[i]);
-//		}
+
 		ManagerCenterDAO dao = new ManagerCenterDAO();
 		ArrayList<ManagerCenterDTO> dtos = dao.list(centerNameKeyword, sportsNameKeyword, sidoKeyword, sigunguKeyword, usageMinFeeKeyword, usageMaxFeeKeyword);
 		model.addAttribute("manager_center_list", dtos);

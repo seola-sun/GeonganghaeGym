@@ -48,8 +48,6 @@ public class ManagerMemberController {
 	
 	@RequestMapping("/manager_member_list")
 	public String list(HttpServletRequest request, Model model) {
-		
-		System.out.println("manager_member_list()");
 		model.addAttribute("request", request);
 		command = new ManagerMemberListCommand();
 		command.execute(model);
@@ -59,23 +57,17 @@ public class ManagerMemberController {
 	
 	@RequestMapping("/manager_member_content_view")
 	public String content_view(HttpServletRequest request, Model model){
-		System.out.println("manager_member_content_view()");
-		
 		model.addAttribute("request", request);
 		command = new ManagerMemberContentCommand();
 		command.execute(model);
-		
 		return "manager_member_content_view";
 	}
 	
 	@RequestMapping("/manager_member_modify_view")
 	public String modify_view(HttpServletRequest request, Model model){
-		System.out.println("manager_member_modify_view()");
-		
 		model.addAttribute("request", request);
 		command = new ManagerMemberModifyContentCommand();
 		command.execute(model);
-		
 		return "manager_member_modify_view";
 	}
 	
@@ -83,8 +75,6 @@ public class ManagerMemberController {
 	
 	@RequestMapping(value="/manager_member_modify", method=RequestMethod.POST )
 	public String modify(HttpServletRequest request, Model model){
-		System.out.println("manager_member_modify()");
-		
 		model.addAttribute("request", request);
 		command = new ManagerMemberModifyCommand();
 		command.execute(model);
@@ -94,12 +84,9 @@ public class ManagerMemberController {
 	
 	@RequestMapping("/manager_member_delete")
 	public String delete(HttpServletRequest request, Model model) {
-		System.out.println("manager_member_delete()");
-		
 		model.addAttribute("request", request);
 		command = new ManagerMemberDeleteCommand();
 		command.execute(model);
-		
 		return "redirect:manager_member_list";
 	}
 	
