@@ -134,8 +134,9 @@
 						<tr class="register" height="30">
 							<td width="5%" align="center">*</td>
 							<td width="15%">회원 ID</td>
-							<td><input type="text" id="id" name="id" size="30" />
+							<td style="padding-top:1.5em;"><input type="text" id="id" name="id" size="30" />
 								<p style="color: red;" id="idCheckMessage"></p>
+							</td>
 						</tr>
 						<tr height="7">
 							<td colspan="3"><hr /></td>
@@ -143,10 +144,10 @@
 						<tr class="register" height="30">
 							<td width="5%" align="center">*</td>
 							<td width="15%">비밀번호</td>
-							<td><input type="password" id="password" name="password"
+							<td style="padding-top:1.5em;"><input type="password" id="password" name="password"
 								size="30" onchange="isSame()" />
-								<p style="color: red;" id="passwordCheckMessage"></p></td>
-
+								<p style="color: red;" id="passwordCheckMessage"></p>
+							</td>
 						</tr>
 						<tr height="7">
 							<td colspan="3"><hr /></td>

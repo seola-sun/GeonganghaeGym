@@ -1,5 +1,5 @@
 
-/*¼¾ÅÍ¸í, Á¾¸ñ, À§Ä¡, ±Ý¾× css*/
+/*ï¿½ï¿½ï¿½Í¸ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ä¡, ï¿½Ý¾ï¿½ css*/
 
 table.type03 {
  
@@ -14,7 +14,7 @@ table.type03 th {
   width: 147px;
   padding: 10px;
   font-weight: bold;
-  vertical-align: top;
+  vertical-align: center;
   color: #153d73;
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
@@ -30,7 +30,7 @@ table.type03 td {
 
 
 
-/*¾÷Ã¼¸í, ÁÖ¿äÁ¾¸ñ, ÇÑ´ÞÀÌ¿ë±Ý¾×, °ü½Éµî·Ï¼ö, ÃßÃµ¼ö css*/
+/*ï¿½ï¿½Ã¼ï¿½ï¿½, ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ñ´ï¿½ï¿½Ì¿ï¿½Ý¾ï¿½, ï¿½ï¿½ï¿½Éµï¿½Ï¼ï¿½, ï¿½ï¿½Ãµï¿½ï¿½ css*/
 table.type09 {
   
   border-collapse: collapse;

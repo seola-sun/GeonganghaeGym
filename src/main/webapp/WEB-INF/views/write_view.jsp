@@ -244,7 +244,7 @@
 							<tr class="register" height="30">
 								<td width="5%" align="center">*</td>
 								<td width="15%">회원 ID</td>
-								<td><input type="text" id="id" name="id" size="30"
+								<td style="padding-top:1.5em;"><input type="text" id="id" name="id" size="30"
 									placeholder="4~12자의 영문 대소문자와 숫자로만 입력" />
 									<button onclick="registerCheckFunction();" type="button">중복체크</button>
 									<p style="color: red;" id="idRegExp"></p></td>
@@ -264,7 +264,7 @@
 							<tr class="register" height="30">
 								<td width="5%" valign="middle" align="center">*</td>
 								<td width="15%" valign="middle">비밀번호 확인</td>
-								<td><input type="password" size="30"
+								<td style="padding-top:1.5em;"><input type="password" size="30"
 									onkeyup="passwordCheckFunction();" id="password2" />
 									<p style="color: red;" id="passwordCheckMessage"></p></td>
 							</tr>
@@ -277,7 +277,7 @@
 							<tr class="register" height="30">
 								<td width="5%" align="center">*</td>
 								<td width="15%">이 름</td>
-								<td><input type="text" name="name" size="30" id="name" />
+								<td style="padding-top:1.5em;"><input type="text" name="name" size="30" id="name" />
 									<p style="color: red;" id="nameCheckMessage"></p></td>
 							</tr>
 
@@ -290,7 +290,7 @@
 							<tr class="register" height="30">
 								<td width="5%" align="center">*</td>
 								<td width="15%">연락처</td>
-								<td><input type="text" name="tel_number" size="30" id="tel_number" />
+								<td style="padding-top:1.5em;"><input type="text" name="tel_number" size="30" id="tel_number" />
 									<p style="color: red;" id="tel_numberRegExp"></p></td>
 							</tr>
 
@@ -303,7 +303,7 @@
 							<tr class="register" height="30">
 								<td width="5%" align="center">*</td>
 								<td width="15%">이메일</td>
-								<td><input type="text" name="email" size="30"
+								<td style="padding-top:1.5em;"><input type="text" name="email" size="30"
 									placeholder="예)id@domain.com" id="email" />
 									<p style="color: red;" id="emailRegExp"></p>
 								</td>
@@ -317,7 +317,7 @@
 						<br />
 						<div class="submit">
 							<input type="submit" 
-								style="width: 120pt; height: 40pt; position: absolute; left: 45%; top: 500px;"
+								style="width: 120pt; height: 40pt; position: absolute; left: 45%; top: 90%;"
 								value="회원가입" />
 						</div>
 					</form>

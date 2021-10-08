@@ -46,7 +46,7 @@ public class InterestDao {
 	public void delete(final String id, String centerCode) {
 		String query = "DELETE FROM INTEREST WHERE ID = ? AND CENTER_CODE = ? ";
 
-		this.template.update(query, new PreparedStatementSetter() {
+		int result = this.template.update(query, new PreparedStatementSetter() {
 
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
@@ -54,6 +54,12 @@ public class InterestDao {
 				ps.setString(2, centerCode);
 			}
 		});
+		
+		// by설아, 관심 목록 삭제가 성공하면, 센터 관심 등록수 -1 
+		if(result == 1) {
+			String centerUpdate = "UPDATE CENTER SET INTEREST_CNT = INTEREST_CNT - 1 WHERE CENTER_CODE = ?";
+			this.template.update(centerUpdate, centerCode);
+		}
 	}
 
 	// by설아, ajax 관심 등록 체크
