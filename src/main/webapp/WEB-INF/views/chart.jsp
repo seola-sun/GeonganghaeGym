@@ -268,8 +268,7 @@ ul li {
 								
 								layout:	{
 									padding :{
-										//left : ,
-										//right :,
+										
 										top : 30,
 										bottom:30 }}
 							 
@@ -307,8 +306,7 @@ ul li {
 							
 					layout:	{
 						padding :{
-							//left : ,
-							//right :,
+							
 							top : 30,
 							bottom:30 }}	
 				
@@ -348,8 +346,7 @@ ul li {
 								
 					layout:	{
 						padding :{
-							//left : ,
-							//right :,
+							
 							top : 50,
 							bottom:50 }}
 								
@@ -369,7 +366,25 @@ ul li {
 					'#fbc02d',
 					'#e53935',
 					'#283593'	
-					], }]},
+					], }, ]},
+					
+					options	: {
+						 plugins: {
+							title : {
+								display : true,
+								text : '센터등록비율',
+								fontSize : 70,
+								fontColor: 'black'},
+								
+								legend : {
+									display : true,
+									position : 'bottom'}} },
+									
+						layout:	{
+							padding :{
+								
+								top : 50,
+								bottom:50 }}
 
 					
 				
